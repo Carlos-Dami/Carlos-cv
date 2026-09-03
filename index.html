@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carlos Martínez — Técnico de Sistemas · Soporte IT · Redes</title>
+<meta name="description" content="Carlos Martínez, técnico de sistemas especializado en soporte IT, Help Desk, redes e infraestructura. Perfil, experiencia y proyectos técnicos.">
+<meta property="og:title" content="Carlos Martínez — Técnico de Sistemas · Soporte IT · Redes">
+<meta property="og:description" content="Soporte IT, Help Desk, sistemas y redes. Perfil profesional de Carlos Martínez.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A0A0D'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%237A1E2B' text-anchor='middle'%3ECM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     CONFIG — edita estos valores si cambian tus datos de contacto
+     ========================================================= */
+  :root{
+    --bg: #0A0A0D;
+    --bg-2: #101015;
+    --bg-3: #17171D;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.14);
+    --text: #EDEDF0;
+    --text-dim: #9A9AA4;
+    --text-faint: #6C6C76;
+    --wine: #8A2432;
+    --wine-bright: #A72E3F;
+    --wine-glow: rgba(138,36,50,0.35);
+    --gold: #B99A5B;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  img{ max-width:100%; display:block; }
+  ::selection{ background:var(--wine); color:#fff; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+  section{ padding:120px 0; border-bottom:1px solid var(--border); }
+  section:last-of-type{ border-bottom:none; }
+
+  .eyebrow{
+    font-size:12.5px; font-weight:600; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--wine-bright); margin-bottom:14px;
+  }
+  h2.title{
+    font-size:clamp(26px,3.4vw,36px); font-weight:700;
+    letter-spacing:-0.01em; margin-bottom:16px;
+  }
+  .lede{ color:var(--text-dim); max-width:560px; font-size:16px; margin-bottom:56px; }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .5s ease, transform .5s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background-color .3s ease;
+  }
+  header.nav.scrolled{
+    background:rgba(10,10,13,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom-color:var(--border);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:0 24px;
+    height:68px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{ font-weight:700; font-size:16px; letter-spacing:0.01em; }
+  .logo span{ color:var(--wine-bright); }
+  .nav-links{ display:flex; gap:32px; }
+  .nav-links a{
+    font-size:14px; color:var(--text-dim); font-weight:500;
+    position:relative; padding:4px 0; transition:color .2s ease;
+  }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--wine-bright); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--wine); color:#fff; font-size:13.5px; font-weight:600;
+    padding:9px 18px; border-radius:6px; transition:background .25s ease, transform .2s ease;
+  }
+  .nav-cta:hover{ background:var(--wine-bright); transform:translateY(-1px); }
+  .burger{
+    display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;
+  }
+  .burger span{ width:22px; height:2px; background:var(--text); display:block; transition:.25s; }
+  @media (max-width:860px){
+    .nav-links, .nav-cta.desktop-only{ display:none; }
+    .burger{ display:flex; }
+  }
+  .mobile-menu{
+    position:fixed; inset:0; background:rgba(8,8,10,0.98);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px;
+    z-index:99; opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .mobile-menu.open{ opacity:1; pointer-events:auto; }
+  .mobile-menu a{ font-size:22px; font-weight:600; color:var(--text); }
+  .mobile-menu .nav-cta{ margin-top:12px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh; display:flex; align-items:center;
+    position:relative; overflow:hidden; border-bottom:1px solid var(--border);
+    padding:140px 0 90px;
+  }
+  .hero-bg{
+    position:absolute; inset:0; z-index:0;
+    background-image:
+      radial-gradient(ellipse 620px 420px at 78% 18%, var(--wine-glow), transparent 70%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 64px);
+    mask-image:linear-gradient(180deg, rgba(0,0,0,0.9), transparent 92%);
+  }
+  .hero .wrap{ position:relative; z-index:1; }
+  .hero-hi{ font-size:15px; color:var(--wine-bright); font-weight:600; margin-bottom:18px; letter-spacing:0.02em; }
+  .hero h1{
+    font-size:clamp(38px,6.4vw,64px); font-weight:800; letter-spacing:-0.02em;
+    line-height:1.05; margin-bottom:18px;
+  }
+  .hero-role{
+    font-size:clamp(16px,2vw,19px); color:var(--text-dim); font-weight:500;
+    margin-bottom:22px;
+  }
+  .hero-role .dot{ color:var(--wine-bright); margin:0 10px; }
+  .hero-desc{ max-width:560px; color:var(--text-dim); font-size:16.5px; margin-bottom:40px; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:14.5px; font-weight:600; padding:13px 24px; border-radius:7px;
+    transition:all .25s ease; border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{ background:var(--wine); color:#fff; }
+  .btn-primary:hover{ background:var(--wine-bright); transform:translateY(-2px); box-shadow:0 10px 30px -12px var(--wine-glow); }
+  .btn-outline{ border-color:var(--border-strong); color:var(--text); background:transparent; }
+  .btn-outline:hover{ border-color:var(--wine-bright); color:var(--wine-bright); }
+  .btn-ghost{ color:var(--text-dim); padding:13px 6px; }
+  .btn-ghost:hover{ color:var(--text); }
+
+  /* ---------- SOBRE MI ---------- */
+  #sobre .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:60px; align-items:start; }
+  @media (max-width:760px){ #sobre .about-grid{ grid-template-columns:1fr; gap:36px; } }
+  #sobre p{ color:var(--text-dim); font-size:16.5px; margin-bottom:16px; max-width:560px; }
+  #sobre p strong{ color:var(--text); font-weight:600; }
+  .about-facts{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--border); }
+  .about-facts div{
+    display:flex; justify-content:space-between; padding:16px 0;
+    border-bottom:1px solid var(--border); font-size:14.5px;
+  }
+  .about-facts span:first-child{ color:var(--text-faint); }
+  .about-facts span:last-child{ color:var(--text); font-weight:500; text-align:right; }
+
+  /* ---------- EXPERIENCIA ---------- */
+  .timeline{ position:relative; max-width:760px; }
+  .timeline::before{
+    content:""; position:absolute; left:9px; top:8px; bottom:8px; width:1px;
+    background:linear-gradient(var(--wine), var(--border) 60%);
+  }
+  .job{ position:relative; padding-left:42px; padding-bottom:56px; }
+  .job:last-child{ padding-bottom:0; }
+  .job-dot{
+    position:absolute; left:0; top:4px; width:19px; height:19px; border-radius:50%;
+    background:var(--bg-2); border:2px solid var(--border-strong);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .job.current .job-dot{ border-color:var(--wine-bright); box-shadow:0 0 0 4px var(--wine-glow); }
+  .job.current .job-dot::after{ content:""; width:7px; height:7px; border-radius:50%; background:var(--wine-bright); }
+  .job-card{
+    background:var(--bg-2); border:1px solid var(--border); border-radius:12px;
+    padding:26px 28px; transition:border-color .25s ease, transform .25s ease;
+  }
+  .job.current .job-card{ border-color:rgba(167,46,63,0.35); }
+  .job-card:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
+  .job-meta{ display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
+  .job-date{ font-size:12.5px; color:var(--text-faint); font-weight:600; letter-spacing:0.03em; }
+  .job-badge{
+    font-size:10.5px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--wine-bright); background:rgba(167,46,63,0.14); padding:3px 9px; border-radius:20px;
+  }
+  .job-title{ font-size:18.5px; font-weight:700; margin-bottom:2px; }
+  .job-org{ font-size:14.5px; color:var(--text-dim); margin-bottom:16px; }
+  .job-card ul{ margin-bottom:16px; }
+  .job-card li{
+    font-size:14.5px; color:var(--text-dim); padding-left:16px; position:relative; margin-bottom:8px;
+  }
+  .job-card li::before{ content:"—"; position:absolute; left:0; color:var(--text-faint); }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-size:12px; font-weight:500; color:var(--text-dim);
+    border:1px solid var(--border); padding:4px 10px; border-radius:20px;
+  }
+
+  /* ---------- FORMACION ---------- */
+  .edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:680px){ .edu-grid{ grid-template-columns:1fr; } }
+  .edu-card{
+    background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:28px;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .edu-card:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
+  .edu-mark{
+    width:34px; height:34px; border-radius:8px; background:rgba(167,46,63,0.14);
+    color:var(--wine-bright); display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:14px; margin-bottom:18px;
+  }
+  .edu-date{ font-size:12.5px; color:var(--text-faint); font-weight:600; margin-bottom:8px; letter-spacing:0.03em; }
+  .edu-title{ font-size:16.5px; font-weight:700; margin-bottom:4px; }
+  .edu-org{ font-size:14px; color:var(--text-dim); }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+  @media (max-width:860px){ .skills-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:480px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-cat{ background:var(--bg-2); padding:26px 24px; }
+  .skill-cat h3{ font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--wine-bright); margin-bottom:16px; }
+  .skill-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-chip{
+    font-size:12.5px; color:var(--text); background:var(--bg-3);
+    border:1px solid var(--border); padding:5px 11px; border-radius:6px;
+  }
+
+  /* ---------- PROYECTOS ---------- */
+  .proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .proj-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .proj-grid{ grid-template-columns:1fr; } }
+  .proj-card{
+    background:var(--bg-2); border:1px solid var(--border); border-radius:12px;
+    padding:24px; transition:border-color .25s ease, transform .25s ease; display:flex; flex-direction:column; gap:10px;
+  }
+  .proj-card:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
+  .proj-icon{
+    width:32px; height:32px; border-radius:8px; background:rgba(167,46,63,0.14);
+    color:var(--wine-bright); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700;
+  }
+  .proj-title{ font-size:15.5px; font-weight:700; }
+  .proj-desc{ font-size:13.5px; color:var(--text-dim); flex:1; }
+  .proj-card.empty{
+    border-style:dashed; border-color:var(--border-strong); background:transparent;
+    align-items:flex-start; justify-content:center; min-height:150px;
+  }
+  .proj-card.empty .proj-title{ color:var(--text-faint); font-weight:600; }
+  .proj-card.empty .proj-desc{ color:var(--text-faint); }
+  .proj-soon{
+    font-size:10.5px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--gold); background:rgba(185,154,91,0.12); padding:3px 9px; border-radius:20px; align-self:flex-start;
+  }
+
+  /* ---------- STACK ---------- */
+  #stack{ padding-top:90px; padding-bottom:90px; }
+  .stack-row{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; }
+  .stack-badge{
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    width:96px; padding:18px 10px; border:1px solid var(--border); border-radius:12px;
+    color:var(--text-dim); font-size:11.5px; font-weight:600; transition:border-color .25s ease, color .25s ease;
+  }
+  .stack-badge:hover{ border-color:var(--wine-bright); color:var(--text); }
+  .stack-glyph{
+    width:34px; height:34px; border-radius:9px; background:var(--bg-3);
+    display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; color:var(--wine-bright);
+  }
+
+  /* ---------- CONTACTO ---------- */
+  #contacto{ text-align:center; border-bottom:none; }
+  #contacto .eyebrow{ display:flex; justify-content:center; }
+  #contacto h2{ font-size:clamp(30px,5vw,44px); margin-bottom:18px; }
+  #contacto .lede{ margin:0 auto 44px; }
+  .contact-actions{ display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-bottom:40px; }
+  .contact-meta{ display:flex; justify-content:center; gap:28px; flex-wrap:wrap; color:var(--text-faint); font-size:13.5px; }
+  .contact-meta a{ color:var(--text-dim); transition:color .2s ease; }
+  .contact-meta a:hover{ color:var(--wine-bright); }
+
+  footer{ padding:32px 0; text-align:center; color:var(--text-faint); font-size:12.5px; }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#inicio" class="logo">Carlos <span>Martínez</span></a>
+    <nav class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#formacion">Formación</a>
+      <a href="#skills">Skills</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="CV_Carlos_Martinez.pdf" download class="nav-cta desktop-only">Descargar CV</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio">Inicio</a>
+  <a href="#sobre">Sobre mí</a>
+  <a href="#experiencia">Experiencia</a>
+  <a href="#formacion">Formación</a>
+  <a href="#skills">Skills</a>
+  <a href="#proyectos">Proyectos</a>
+  <a href="#contacto">Contacto</a>
+  <a href="CV_Carlos_Martinez.pdf" download class="btn btn-primary nav-cta">Descargar CV</a>
+</div>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="hero-hi">Hola, soy Carlos.</p>
+    <h1>Técnico de sistemas centrado<br>en soporte IT e infraestructura.</h1>
+    <p class="hero-role">Técnico de Sistemas <span class="dot">·</span> Soporte IT <span class="dot">·</span> Redes</p>
+    <p class="hero-desc">Técnico Superior en ASIR con experiencia en soporte IT, atención a usuarios, resolución de incidencias, sistemas Windows/Linux, redes y virtualización. Actualmente en el servicio CAU de Versia.</p>
+    <div class="hero-actions">
+      <a href="CV_Carlos_Martinez.pdf" download class="btn btn-primary">Descargar CV</a>
+      <a href="#experiencia" class="btn btn-outline">Ver experiencia</a>
+      <a href="#contacto" class="btn btn-ghost">Contactar conmigo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SOBRE MI ============== -->
+<section id="sobre">
+  <div class="wrap">
+    <p class="eyebrow reveal">Sobre mí</p>
+    <div class="about-grid">
+      <div class="reveal">
+        <p><strong>Trabajo en soporte de sistemas</strong>, resolviendo cada día las incidencias que llegan por el canal CAU en Versia: desde un problema de red hasta un fallo de aplicación, diagnosticando y escalando cuando hace falta.</p>
+        <p>Mi formación como <strong>Técnico Superior en ASIR</strong> me dio la base en Windows, Linux, redes y virtualización, y la he ido reforzando con proyectos propios: levantar servidores Ubuntu, montar laboratorios en Proxmox o administrar usuarios en Active Directory.</p>
+        <p>Me interesa seguir creciendo hacia <strong>infraestructura y sistemas en la nube</strong>. Soy una persona metódica, con capacidad de aprender rápido y de mantener la calma cuando algo se rompe.</p>
+      </div>
+      <div class="about-facts reveal">
+        <div><span>Rol actual</span><span>Técnico de Soporte CAU</span></div>
+        <div><span>Empresa</span><span>Versia</span></div>
+        <div><span>Formación</span><span>Técnico Superior ASIR</span></div>
+        <div><span>Ubicación</span><span>Bilbao, Bizkaia</span></div>
+        <div><span>Idiomas</span><span>ES nativo · PT B2 · EN B1</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== EXPERIENCIA ============== -->
+<section id="experiencia">
+  <div class="wrap">
+    <p class="eyebrow reveal">Experiencia</p>
+    <h2 class="title reveal">Recorrido profesional</h2>
+    <p class="lede reveal">De la administración y la contabilidad al soporte de sistemas, con una progresión clara hacia IT.</p>
+
+    <div class="timeline">
+
+      <div class="job current reveal">
+        <div class="job-dot"></div>
+        <div class="job-card">
+          <div class="job-meta">
+            <span class="job-date">20/07/2026 — ACTUALIDAD</span>
+            <span class="job-badge">Actual</span>
+          </div>
+          <div class="job-title">Técnico de Soporte CAU</div>
+          <div class="job-org">Versia</div>
+          <ul>
+            <li>Atención y soporte técnico a usuarios mediante canal CAU.</li>
+            <li>Registro, diagnóstico, resolución y seguimiento de incidencias.</li>
+            <li>Soporte de primer nivel sobre equipos, sistemas y aplicaciones.</li>
+            <li>Escalado de incidencias cuando requieren intervención de otros niveles técnicos.</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">CAU</span>
+            <span class="tag">Help Desk</span>
+            <span class="tag">Gestión de incidencias</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-dot"></div>
+        <div class="job-card">
+          <div class="job-meta"><span class="job-date">2025 · BILBAO · PRÁCTICAS</span></div>
+          <div class="job-title">Técnico de Soporte en Redes y Sistemas</div>
+          <div class="job-org">CIFP Elorrieta Erreka Mari</div>
+          <ul>
+            <li>Soporte técnico a usuarios en entornos Windows y Linux.</li>
+            <li>Resolución de incidencias relacionadas con sistemas, redes y software.</li>
+            <li>Instalación, configuración y mantenimiento de equipos informáticos.</li>
+            <li>Administración básica de Active Directory y gestión de usuarios en Windows Server.</li>
+            <li>Creación y mantenimiento de entornos virtualizados con Proxmox.</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">Windows</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Active Directory</span>
+            <span class="tag">Proxmox</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-dot"></div>
+        <div class="job-card">
+          <div class="job-meta"><span class="job-date">2020 — 2022</span></div>
+          <div class="job-title">Administrativo</div>
+          <div class="job-org">Punto Farma S.A.</div>
+          <ul>
+            <li>Gestión y control de stock mediante herramientas informáticas.</li>
+            <li>Gestión documental y atención al cliente.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-dot"></div>
+        <div class="job-card">
+          <div class="job-meta"><span class="job-date">2018 — 2020</span></div>
+          <div class="job-title">Auxiliar Contable</div>
+          <div class="job-org">MB Estudio Contable</div>
+          <ul>
+            <li>Registro y revisión de documentación contable.</li>
+            <li>Gestión de trámites bancarios y administrativos.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== FORMACION ============== -->
+<section id="formacion">
+  <div class="wrap">
+    <p class="eyebrow reveal">Formación</p>
+    <h2 class="title reveal">Estudios y formación técnica</h2>
+    <p class="lede reveal">Base en sistemas en red, ampliada con formación específica en instalaciones eléctricas.</p>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-mark">TS</div>
+        <div class="edu-date">2022 — 2025</div>
+        <div class="edu-title">Técnico Superior en Administración de Sistemas Informáticos en Red (ASIR)</div>
+        <div class="edu-org">CIFP Elorrieta Erreka Mari</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-mark">BT</div>
+        <div class="edu-date">Enero 2026 — Mayo 2026</div>
+        <div class="edu-title">Montaje y Mantenimiento de Instalaciones Eléctricas de Baja Tensión</div>
+        <div class="edu-org">Formación complementaria</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SKILLS ============== -->
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow reveal">Skills</p>
+    <h2 class="title reveal">Stack técnico</h2>
+    <p class="lede reveal">Organizado por área, tal como aparece en mi experiencia y formación.</p>
+    <div class="skills-grid reveal">
+      <div class="skill-cat">
+        <h3>Sistemas</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">Windows</span>
+          <span class="skill-chip">Windows Server 2019</span>
+          <span class="skill-chip">Linux Ubuntu/Debian</span>
+          <span class="skill-chip">Active Directory</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Soporte IT</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">CAU</span>
+          <span class="skill-chip">Help Desk / Nivel 1</span>
+          <span class="skill-chip">Gestión de incidencias</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Redes</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">TCP/IP</span>
+          <span class="skill-chip">LAN</span>
+          <span class="skill-chip">VLANs básicas</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Virtualización</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">Proxmox VE (KVM)</span>
+          <span class="skill-chip">VirtualBox</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Servidores</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">Apache</span>
+          <span class="skill-chip">MySQL</span>
+          <span class="skill-chip">MariaDB</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Automatización</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">PLC Siemens LOGO!</span>
+          <span class="skill-chip">CADe_SIMU</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Electricidad</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">Baja tensión</span>
+          <span class="skill-chip">Cableado de paneles</span>
+          <span class="skill-chip">Relés / Contactores</span>
+          <span class="skill-chip">Sensores</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Desarrollo web</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">HTML</span>
+          <span class="skill-chip">CSS</span>
+          <span class="skill-chip">PHP</span>
+          <span class="skill-chip">WordPress</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROYECTOS ============== -->
+<section id="proyectos">
+  <div class="wrap">
+    <p class="eyebrow reveal">Proyectos</p>
+    <h2 class="title reveal">Proyectos técnicos</h2>
+    <p class="lede reveal">Trabajo práctico realizado durante la formación y el día a día. Iré añadiendo proyectos personales próximamente.</p>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div class="proj-icon">AD</div>
+        <div class="proj-title">Active Directory</div>
+        <div class="proj-desc">Administración de usuarios y grupos en Active Directory.</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">UB</div>
+        <div class="proj-title">Servidores Linux Ubuntu</div>
+        <div class="proj-desc">Instalación y configuración de servidores Linux Ubuntu.</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">PX</div>
+        <div class="proj-title">Laboratorios con Proxmox</div>
+        <div class="proj-desc">Creación de máquinas virtuales y laboratorios de pruebas con Proxmox.</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">NW</div>
+        <div class="proj-title">Redes locales</div>
+        <div class="proj-desc">Configuración básica de redes locales y servicios de red.</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">WP</div>
+        <div class="proj-title">WordPress + Apache</div>
+        <div class="proj-desc">Configuración de WordPress con Apache y MariaDB.</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">PLC</div>
+        <div class="proj-title">Automatismos industriales</div>
+        <div class="proj-desc">Diseño y simulación con CADe_SIMU y programación básica de PLC Siemens LOGO!.</div>
+      </div>
+
+      <div class="proj-card empty reveal">
+        <span class="proj-soon">Próximamente</span>
+        <div class="proj-title">Desarrollo web</div>
+        <div class="proj-desc">Espacio reservado para un proyecto de desarrollo web personal.</div>
+      </div>
+      <div class="proj-card empty reveal">
+        <span class="proj-soon">Próximamente</span>
+        <div class="proj-title">Infraestructura & Cloud</div>
+        <div class="proj-desc">Espacio reservado para un proyecto de infraestructura o cloud.</div>
+      </div>
+      <div class="proj-card empty reveal">
+        <span class="proj-soon">Próximamente</span>
+        <div class="proj-title">Automatización</div>
+        <div class="proj-desc">Espacio reservado para un proyecto personal de automatización.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STACK ============== -->
+<section id="stack">
+  <div class="wrap">
+    <p class="eyebrow reveal" style="text-align:center; display:block;">Entorno de trabajo</p>
+    <div class="stack-row reveal">
+      <div class="stack-badge"><div class="stack-glyph">W</div>Windows</div>
+      <div class="stack-badge"><div class="stack-glyph">Lx</div>Linux</div>
+      <div class="stack-badge"><div class="stack-glyph">Px</div>Proxmox</div>
+      <div class="stack-badge"><div class="stack-glyph">Ap</div>Apache</div>
+      <div class="stack-badge"><div class="stack-glyph">Db</div>MariaDB</div>
+      <div class="stack-badge"><div class="stack-glyph">Wp</div>WordPress</div>
+      <div class="stack-badge"><div class="stack-glyph">AD</div>Active Dir.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACTO ============== -->
+<section id="contacto">
+  <div class="wrap">
+    <p class="eyebrow reveal">Contacto</p>
+    <h2 class="reveal">¿Hablamos?</h2>
+    <p class="lede reveal">Disponible para hablar sobre oportunidades en soporte IT, sistemas e infraestructura.</p>
+    <div class="contact-actions reveal">
+      <a href="mailto:Carlos10martinez08@gmail.com" class="btn btn-primary">Escríbeme un email</a>
+      <a href="CV_Carlos_Martinez.pdf" download class="btn btn-outline">Descargar CV</a>
+    </div>
+    <div class="contact-meta reveal">
+      <a href="mailto:Carlos10martinez08@gmail.com">Carlos10martinez08@gmail.com</a>
+      <span>Bilbao, Bizkaia, España</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Carlos Martínez — Técnico de Sistemas · Soporte IT · Redes</div>
+</footer>
+
+<script>
+  // Nav background on scroll
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+  }, { passive:true });
+
+  // Mobile menu
+  const burger = document.getElementById('burgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
