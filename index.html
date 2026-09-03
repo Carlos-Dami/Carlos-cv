@@ -228,11 +228,22 @@
   .edu-org{ font-size:14px; color:var(--text-dim); }
 
   /* ---------- SKILLS ---------- */
-  .skills-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+  .skills-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
   @media (max-width:860px){ .skills-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:480px){ .skills-grid{ grid-template-columns:1fr; } }
+  @media (max-width:560px){ .skills-grid{ grid-template-columns:1fr; } }
   .skill-cat{ background:var(--bg-2); padding:26px 24px; }
   .skill-cat h3{ font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--wine-bright); margin-bottom:16px; }
+
+  .env-heading{ margin-top:72px; margin-bottom:28px; }
+  .env-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:720px){ .env-grid{ grid-template-columns:1fr; } }
+  .env-card{
+    background:var(--bg-2); border:1px solid var(--border); border-radius:12px;
+    padding:24px 26px; transition:border-color .25s ease, transform .25s ease;
+  }
+  .env-card:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
+  .env-title{ font-size:15px; font-weight:700; margin-bottom:8px; }
+  .env-desc{ font-size:13.5px; color:var(--text-dim); }
   .skill-chips{ display:flex; flex-wrap:wrap; gap:8px; }
   .skill-chip{
     font-size:12.5px; color:var(--text); background:var(--bg-3);
@@ -477,43 +488,133 @@
     <p class="lede reveal">Organizado por área, tal como aparece en mi experiencia y formación.</p>
     <div class="skills-grid reveal">
       <div class="skill-cat">
-        <h3>Sistemas</h3>
+        <h3>Sistemas operativos</h3>
         <div class="skill-chips">
-          <span class="skill-chip">Windows</span>
+          <span class="skill-chip">Windows 10/11</span>
           <span class="skill-chip">Windows Server 2019</span>
-          <span class="skill-chip">Linux Ubuntu/Debian</span>
-          <span class="skill-chip">Active Directory</span>
+          <span class="skill-chip">Linux (Ubuntu/Debian)</span>
         </div>
       </div>
       <div class="skill-cat">
-        <h3>Soporte IT</h3>
+        <h3>Administración de sistemas</h3>
         <div class="skill-chips">
-          <span class="skill-chip">CAU</span>
-          <span class="skill-chip">Help Desk / Nivel 1</span>
-          <span class="skill-chip">Gestión de incidencias</span>
+          <span class="skill-chip">Active Directory</span>
+          <span class="skill-chip">Usuarios y grupos</span>
+          <span class="skill-chip">Unidades Organizativas (OU)</span>
+          <span class="skill-chip">GPO</span>
+          <span class="skill-chip">DNS</span>
+          <span class="skill-chip">DHCP</span>
+          <span class="skill-chip">Gestión de servicios</span>
+          <span class="skill-chip">Permisos</span>
+          <span class="skill-chip">Recursos compartidos</span>
+          <span class="skill-chip">Administración remota</span>
+          <span class="skill-chip">SSH</span>
         </div>
       </div>
       <div class="skill-cat">
         <h3>Redes</h3>
         <div class="skill-chips">
           <span class="skill-chip">TCP/IP</span>
+          <span class="skill-chip">IPv4/IPv6</span>
+          <span class="skill-chip">Subnetting</span>
           <span class="skill-chip">LAN</span>
-          <span class="skill-chip">VLANs básicas</span>
+          <span class="skill-chip">VLAN</span>
+          <span class="skill-chip">DNS</span>
+          <span class="skill-chip">DHCP</span>
+          <span class="skill-chip">NAT</span>
+          <span class="skill-chip">Routing</span>
+          <span class="skill-chip">Switching</span>
+          <span class="skill-chip">Troubleshooting de redes</span>
         </div>
       </div>
       <div class="skill-cat">
         <h3>Virtualización</h3>
         <div class="skill-chips">
           <span class="skill-chip">Proxmox VE (KVM)</span>
-          <span class="skill-chip">VirtualBox</span>
+          <span class="skill-chip">VMware</span>
+          <span class="skill-chip">Hyper-V</span>
+          <span class="skill-chip">Máquinas virtuales</span>
+          <span class="skill-chip">Redes virtuales</span>
+          <span class="skill-chip">Gestión de recursos</span>
+          <span class="skill-chip">Snapshots</span>
+          <span class="skill-chip">Clonado</span>
         </div>
       </div>
       <div class="skill-cat">
-        <h3>Servidores</h3>
+        <h3>Servidores y servicios</h3>
         <div class="skill-chips">
-          <span class="skill-chip">Apache</span>
-          <span class="skill-chip">MySQL</span>
-          <span class="skill-chip">MariaDB</span>
+          <span class="skill-chip">Servidores Windows/Linux</span>
+          <span class="skill-chip">HTTP/HTTPS</span>
+          <span class="skill-chip">FTP/SFTP</span>
+          <span class="skill-chip">SSH</span>
+          <span class="skill-chip">Servidores web</span>
+          <span class="skill-chip">Compartición de archivos</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Bases de datos</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">SQL</span>
+          <span class="skill-chip">MySQL/MariaDB</span>
+          <span class="skill-chip">Modelo relacional</span>
+          <span class="skill-chip">Consultas SQL</span>
+          <span class="skill-chip">Usuarios y permisos</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Scripting</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">Bash</span>
+          <span class="skill-chip">Automatización de tareas</span>
+          <span class="skill-chip">Scripts de administración</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Web</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">HTML</span>
+          <span class="skill-chip">CSS</span>
+          <span class="skill-chip">XML</span>
+          <span class="skill-chip">JSON</span>
+          <span class="skill-chip">PHP</span>
+          <span class="skill-chip">WordPress</span>
+          <span class="skill-chip">Arquitectura cliente-servidor</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Seguridad</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">Control de acceso</span>
+          <span class="skill-chip">Permisos</span>
+          <span class="skill-chip">Firewalls</span>
+          <span class="skill-chip">VPN</span>
+          <span class="skill-chip">Copias de seguridad</span>
+          <span class="skill-chip">Recuperación ante fallos</span>
+          <span class="skill-chip">Hardening básico</span>
+          <span class="skill-chip">Actualizaciones y parches</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Hardware e infraestructura</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">PCs</span>
+          <span class="skill-chip">Servidores</span>
+          <span class="skill-chip">SSD/HDD</span>
+          <span class="skill-chip">RAID</span>
+          <span class="skill-chip">BIOS/UEFI</span>
+          <span class="skill-chip">Diagnóstico de hardware</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Soporte IT</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">Help Desk</span>
+          <span class="skill-chip">CAU Nivel 1</span>
+          <span class="skill-chip">Gestión de incidencias</span>
+          <span class="skill-chip">Troubleshooting</span>
+          <span class="skill-chip">Soporte a usuarios</span>
+          <span class="skill-chip">Instalación y configuración de equipos</span>
+          <span class="skill-chip">Documentación técnica</span>
         </div>
       </div>
       <div class="skill-cat">
@@ -532,14 +633,42 @@
           <span class="skill-chip">Sensores</span>
         </div>
       </div>
-      <div class="skill-cat">
-        <h3>Desarrollo web</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">HTML</span>
-          <span class="skill-chip">CSS</span>
-          <span class="skill-chip">PHP</span>
-          <span class="skill-chip">WordPress</span>
-        </div>
+    </div>
+
+    <h3 class="title reveal env-heading" style="font-size:22px;">Entornos de trabajo</h3>
+    <p class="lede reveal">Cómo aplico este stack en la práctica.</p>
+    <div class="env-grid">
+      <div class="env-card reveal">
+        <div class="env-title">Entornos corporativos Windows</div>
+        <div class="env-desc">Administración de Active Directory, dominios, usuarios, grupos, GPO, DNS, DHCP y recursos compartidos.</div>
+      </div>
+      <div class="env-card reveal">
+        <div class="env-title">Entornos Linux</div>
+        <div class="env-desc">Administración básica de servidores Ubuntu/Debian mediante terminal y SSH, gestión de usuarios, permisos, servicios y automatización con Bash.</div>
+      </div>
+      <div class="env-card reveal">
+        <div class="env-title">Infraestructuras virtualizadas</div>
+        <div class="env-desc">Despliegue y administración de máquinas virtuales mediante Proxmox VE/KVM, con conocimientos de VMware y Hyper-V.</div>
+      </div>
+      <div class="env-card reveal">
+        <div class="env-title">Infraestructuras de red</div>
+        <div class="env-desc">Configuración y diagnóstico de redes LAN, VLAN y TCP/IP, incluyendo direccionamiento IP, DNS, DHCP, routing y switching.</div>
+      </div>
+      <div class="env-card reveal">
+        <div class="env-title">Entornos de soporte IT</div>
+        <div class="env-desc">Atención a usuarios, gestión y seguimiento de incidencias, diagnóstico de problemas y resolución de incidencias de primer nivel.</div>
+      </div>
+      <div class="env-card reveal">
+        <div class="env-title">Entornos de servidores</div>
+        <div class="env-desc">Instalación, configuración, mantenimiento y administración de servidores Windows/Linux y servicios de infraestructura.</div>
+      </div>
+      <div class="env-card reveal">
+        <div class="env-title">Entornos web y bases de datos</div>
+        <div class="env-desc">Trabajo con servidores web, aplicaciones cliente-servidor, PHP, SQL y sistemas gestores de bases de datos.</div>
+      </div>
+      <div class="env-card reveal">
+        <div class="env-title">Entornos de laboratorio</div>
+        <div class="env-desc">Diseño, despliegue y configuración de infraestructuras IT virtualizadas para prácticas, pruebas y simulación de escenarios empresariales.</div>
       </div>
     </div>
   </div>
@@ -609,11 +738,12 @@
     <div class="stack-row reveal">
       <div class="stack-badge"><div class="stack-glyph">W</div>Windows</div>
       <div class="stack-badge"><div class="stack-glyph">Lx</div>Linux</div>
-      <div class="stack-badge"><div class="stack-glyph">Px</div>Proxmox</div>
-      <div class="stack-badge"><div class="stack-glyph">Ap</div>Apache</div>
-      <div class="stack-badge"><div class="stack-glyph">Db</div>MariaDB</div>
-      <div class="stack-badge"><div class="stack-glyph">Wp</div>WordPress</div>
       <div class="stack-badge"><div class="stack-glyph">AD</div>Active Dir.</div>
+      <div class="stack-badge"><div class="stack-glyph">Px</div>Proxmox</div>
+      <div class="stack-badge"><div class="stack-glyph">Nw</div>Redes</div>
+      <div class="stack-badge"><div class="stack-glyph">Sh</div>SSH / Bash</div>
+      <div class="stack-badge"><div class="stack-glyph">Db</div>SQL</div>
+      <div class="stack-badge"><div class="stack-glyph">Sc</div>Seguridad</div>
     </div>
   </div>
 </section>
