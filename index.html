@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A0A0D'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%237A1E2B' text-anchor='middle'%3ECM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* =========================================================
      CONFIG — edita estos valores si cambian tus datos de contacto
@@ -33,8 +33,9 @@
 
   *{ box-sizing:border-box; margin:0; padding:0; }
   html{ scroll-behavior:smooth; }
+  html{ background:var(--bg); }
   body{
-    background:var(--bg);
+    background:transparent;
     color:var(--text);
     font-family:'Inter', sans-serif;
     font-size:16px;
@@ -132,9 +133,7 @@
   .hero-bg{
     position:absolute; inset:0; z-index:0;
     background-image:
-      radial-gradient(ellipse 620px 420px at 78% 18%, var(--wine-glow), transparent 70%),
-      repeating-linear-gradient(0deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 64px),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 64px);
+      radial-gradient(ellipse 620px 420px at 78% 18%, var(--wine-glow), transparent 70%);
     mask-image:linear-gradient(180deg, rgba(0,0,0,0.9), transparent 92%);
   }
   .hero .wrap{ position:relative; z-index:1; }
@@ -296,20 +295,149 @@
   .contact-meta a{ color:var(--text-dim); transition:color .2s ease; }
   .contact-meta a:hover{ color:var(--wine-bright); }
 
+
+  /* ---------- INTERACCIÓN ---------- */
+  .hero-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center; }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; gap:44px; } }
+  .hero-grid > *{ min-width:0; }
+  .status{ display:inline-flex; align-items:center; gap:9px; font-size:12.5px; font-weight:600; color:var(--text-dim);
+    border:1px solid var(--border-strong); background:rgba(255,255,255,0.02); padding:6px 12px; border-radius:20px; margin-bottom:22px; }
+  .status i{ width:8px; height:8px; border-radius:50%; background:#3FB97A; box-shadow:0 0 0 0 rgba(63,185,122,.6); animation:pulse 2.2s infinite; }
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(63,185,122,.55)} 70%{box-shadow:0 0 0 8px rgba(63,185,122,0)} 100%{box-shadow:0 0 0 0 rgba(63,185,122,0)} }
+
+  .term{ background:#0D0D11; border:1px solid var(--border-strong); border-radius:12px; overflow:hidden;
+    box-shadow:0 30px 80px -40px var(--wine-glow); font-family:'JetBrains Mono', ui-monospace, Menlo, monospace; font-size:13px; }
+  .term-bar{ display:flex; align-items:center; gap:7px; padding:11px 14px; border-bottom:1px solid var(--border); background:var(--bg-2); }
+  .term-bar span{ width:10px; height:10px; border-radius:50%; background:var(--bg-3); border:1px solid var(--border-strong); }
+  .term-bar em{ font-style:normal; color:var(--text-faint); font-size:12px; margin-left:8px; }
+  .term-body{ height:248px; overflow-y:auto; padding:16px 16px 4px; color:var(--text-dim); line-height:1.65; }
+  .term-body .l{ white-space:pre-wrap; word-break:break-word; }
+  .term-body .cmd{ color:var(--text); }
+  .term-body .acc{ color:var(--wine-bright); }
+  .term-body .ok{ color:#3FB97A; }
+  .term-body a{ color:var(--gold); text-decoration:underline; text-underline-offset:2px; }
+  .term-line{ display:flex; gap:8px; align-items:center; padding:8px 16px 14px; }
+  .term-line label{ color:var(--wine-bright); white-space:nowrap; }
+  .term-line input{ flex:1; min-width:0; background:transparent; border:none; outline:none; color:var(--text); font:inherit; caret-color:var(--wine-bright); }
+  .term-hints{ display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px; border-top:1px solid var(--border); background:var(--bg-2); }
+  .term-hints button{ font:inherit; font-size:11.5px; color:var(--text-dim); background:transparent; border:1px solid var(--border); border-radius:5px; padding:3px 9px; cursor:pointer; transition:border-color .2s, color .2s; }
+  .term-hints button:hover{ border-color:var(--wine-bright); color:var(--text); }
+  :focus-visible{ outline:2px solid var(--wine-bright); outline-offset:2px; }
+
+  .filters{ display:flex; flex-wrap:wrap; gap:8px; margin:-28px 0 32px; }
+  .filters button{ font:inherit; font-size:13px; font-weight:500; color:var(--text-dim); background:transparent;
+    border:1px solid var(--border-strong); border-radius:20px; padding:6px 14px; cursor:pointer; transition:all .2s ease; }
+  .filters button:hover{ color:var(--text); }
+  .filters button.on{ background:var(--wine); border-color:var(--wine); color:#fff; }
+  .proj-card.hide{ display:none; }
+
+  .glow{ position:relative; isolation:isolate; }
+  .glow::before{ content:""; position:absolute; inset:0; border-radius:inherit; z-index:-1; opacity:0; transition:opacity .3s ease;
+    background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(167,46,63,0.14), transparent 70%); }
+  .glow:hover::before{ opacity:1; }
+
+  .copy-btn{ font:inherit; font-size:13.5px; color:var(--text-dim); background:transparent; border:1px solid var(--border); border-radius:6px; padding:4px 10px; cursor:pointer; }
+  .copy-btn:hover{ color:var(--text); border-color:var(--wine-bright); }
+  .toast{ position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,20px); opacity:0;
+    background:var(--bg-3); border:1px solid var(--border-strong); color:var(--text); font-size:13.5px; font-weight:500;
+    padding:10px 18px; border-radius:8px; transition:all .25s ease; pointer-events:none; z-index:200; }
+  .toast.show{ opacity:1; transform:translate(-50%,0); }
+  @media (prefers-reduced-motion: reduce){ .status i{ animation:none; } }
+  .hero-grid h1{ font-size:clamp(36px,4.4vw,54px); }
+  .hero-grid h1 br{ display:none; }
+  @media (max-width:560px){ .term{ font-size:12px; } .term-body{ height:220px; } }
+
+  /* ---------- FORMAS SUAVES ---------- */
+  section{ border-bottom:none; }
+  .hero{ border-bottom:none; }
+  .btn, .nav-cta{ border-radius:999px; }
+  .lang-btn{ border-radius:999px; padding:6px 12px; }
+  .job-card, .edu-card, .proj-card, .env-card{ border-radius:20px; }
+  .job-card, .edu-card, .proj-card{ background:linear-gradient(180deg, var(--bg-2), rgba(16,16,21,0.6)); border-color:rgba(255,255,255,0.06); }
+  .proj-card{ padding:26px; }
+  .proj-card.empty{ border-radius:20px; }
+  .proj-icon, .edu-mark{ border-radius:50%; width:38px; height:38px; font-size:12.5px; }
+  .tag, .skill-chip, .job-badge, .proj-soon{ border-radius:999px; }
+  .skill-chip{ padding:5px 12px; }
+  .skills-grid{ display:block; columns:3 280px; column-gap:14px; background:none; border:none; border-radius:0; overflow:visible; }
+  .skill-cat{ break-inside:avoid; margin-bottom:14px; }
+  .skill-cat{ border-radius:20px; border:1px solid rgba(255,255,255,0.06); background:linear-gradient(180deg, var(--bg-2), rgba(16,16,21,0.6)); }
+  .about-facts{ border:1px solid rgba(255,255,255,0.06); border-radius:20px; background:var(--bg-2); padding:6px 22px; }
+  .about-facts div:last-child{ border-bottom:none; }
+  .term{ border-radius:20px; }
+  .term-hints button, .filters button, .copy-btn{ border-radius:999px; }
+  .term-bar span{ background:var(--wine); border:none; opacity:.55; }
+  .term-bar span + span{ opacity:.35; } .term-bar span + span + span{ opacity:.2; }
+  .stack-badge{ border-radius:20px; }
+  .stack-glyph{ border-radius:50%; }
+  .status{ background:rgba(63,185,122,0.06); border-color:rgba(63,185,122,0.25); }
+  .toast{ border-radius:999px; }
+  .timeline::before{ left:9px; }
+  .job-dot{ background:var(--bg); }
+
+  /* ---------- MENOS DE ENTRADA ---------- */
+  [hidden]{ display:none !important; }
+  .skills-key{ display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:14px; }
+  .skills-key .skill-cat{ margin-bottom:0; }
+  .more-row{ display:flex; justify-content:center; margin-top:28px; }
+  #skillsAll{ margin-top:28px; }
+  .proj-grid.collapsed:not(.filtered) .proj-card.extra{ display:none; }
+  section{ padding:96px 0; }
+
+  /* ---------- EXPLORADOR DE SKILLS ---------- */
+  .sx{ display:grid; grid-template-columns:260px minmax(0,1fr); gap:40px; align-items:start; }
+  @media (max-width:820px){ .sx{ grid-template-columns:1fr; gap:24px; } }
+  .sx-side{ display:flex; flex-direction:column; gap:18px; min-width:0; }
+  .sx-q{ width:100%; font:inherit; font-size:14.5px; color:var(--text); background:var(--bg-2); border:1px solid var(--border-strong);
+    border-radius:999px; padding:12px 18px; outline:none; transition:border-color .2s ease, box-shadow .2s ease; }
+  .sx-q::placeholder{ color:var(--text-faint); }
+  .sx-q:focus{ border-color:var(--wine-bright); box-shadow:0 0 0 4px var(--wine-glow); }
+  .sx-cats{ display:flex; flex-direction:column; gap:4px; }
+  @media (max-width:820px){ .sx-cats{ flex-direction:row; overflow-x:auto; gap:8px; padding-bottom:4px; scrollbar-width:none; } .sx-cats::-webkit-scrollbar{ display:none; } }
+  .sx-cat{ display:flex; align-items:center; justify-content:space-between; gap:14px; width:100%; text-align:left; cursor:pointer;
+    font:inherit; font-size:15px; font-weight:500; color:var(--text-dim); background:transparent; border:1px solid transparent;
+    border-radius:14px; padding:11px 16px; transition:all .2s ease; }
+  .sx-cat em{ font-style:normal; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11.5px; color:var(--text-faint); }
+  .sx-cat:hover{ color:var(--text); background:rgba(255,255,255,0.03); }
+  .sx-cat.on{ color:var(--text); background:rgba(167,46,63,0.14); border-color:rgba(167,46,63,0.35); }
+  .sx-cat.on em{ color:var(--wine-bright); }
+  @media (max-width:820px){ .sx-cat{ width:auto; white-space:nowrap; border-color:var(--border); border-radius:999px; flex:0 0 auto; } }
+
+  .sx-main{ min-width:0; }
+  .sx-items{ display:flex; flex-wrap:wrap; gap:10px; min-height:96px; align-content:flex-start; }
+  .sx-sk{ font:inherit; font-size:15px; font-weight:500; color:var(--text); background:var(--bg-2); cursor:pointer;
+    border:1px solid var(--border-strong); border-radius:999px; padding:10px 20px;
+    transition:border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .25s ease;
+    animation:skIn .35s ease both; animation-delay:calc(var(--i,0) * 28ms); }
+  .sx-sk:hover{ border-color:var(--wine-bright); transform:translateY(-2px); }
+  .sx-sk.on{ background:var(--wine); border-color:var(--wine); color:#fff; box-shadow:0 12px 32px -14px var(--wine-glow); }
+  .sx-empty{ color:var(--text-faint); font-size:14.5px; padding:10px 4px; }
+  @keyframes skIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){ .sx-sk{ animation:none; } }
+
+  .sx-insp{ margin-top:26px; min-height:170px; padding:28px 30px; border-radius:20px; border:1px solid rgba(255,255,255,0.06);
+    background:linear-gradient(180deg, var(--bg-2), rgba(16,16,21,0.6)); display:flex; flex-direction:column; gap:10px; }
+  .sx-k{ font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--wine-bright); }
+  .sx-insp h3{ font-size:26px; font-weight:700; letter-spacing:-0.01em; line-height:1.2; }
+  .sx-insp p{ color:var(--text-dim); font-size:16px; max-width:520px; }
+  .sx-where{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:6px; }
+  .sx-where > span:first-child{ font-size:12.5px; color:var(--text-faint); margin-right:2px; }
+
+  /* ---------- FONDO INTERACTIVO ---------- */
+  #bgfx{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+
   footer{ padding:32px 0; text-align:center; color:var(--text-faint); font-size:12.5px; }
 </style>
 </head>
 <body>
+<canvas id="bgfx" aria-hidden="true"></canvas>
 
 <!-- ============== NAV ============== -->
 <header class="nav" id="siteNav">
   <div class="nav-inner">
     <a href="#inicio" class="logo">Carlos <span>Martínez</span></a>
     <nav class="nav-links">
-      <a href="#inicio">Inicio</a>
-      <a href="#sobre">Sobre mí</a>
       <a href="#experiencia">Experiencia</a>
-      <a href="#formacion">Formación</a>
       <a href="#skills">Skills</a>
       <a href="#proyectos">Proyectos</a>
       <a href="#contacto">Contacto</a>
@@ -325,10 +453,7 @@
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#inicio">Inicio</a>
-  <a href="#sobre">Sobre mí</a>
   <a href="#experiencia">Experiencia</a>
-  <a href="#formacion">Formación</a>
   <a href="#skills">Skills</a>
   <a href="#proyectos">Proyectos</a>
   <a href="#contacto">Contacto</a>
@@ -338,9 +463,11 @@
 <!-- ============== HERO ============== -->
 <section class="hero" id="inicio">
   <div class="hero-bg" aria-hidden="true"></div>
-  <div class="wrap">
+  <div class="wrap hero-grid">
+   <div>
+    <span class="status"><i aria-hidden="true"></i><span>Disponible para nuevas oportunidades</span></span>
     <p class="hero-hi">Hola, soy Carlos.</p>
-    <h1>Técnico de sistemas centrado<br>en soporte IT e infraestructura.</h1>
+    <h1>Técnico de sistemas centrado en soporte IT e infraestructura.</h1>
     <p class="hero-role">Técnico de Sistemas <span class="dot">·</span> Soporte IT <span class="dot">·</span> Redes</p>
     <p class="hero-desc">Técnico Superior en ASIR con experiencia en soporte IT, atención a usuarios, resolución de incidencias, sistemas Windows/Linux, redes y virtualización. Actualmente en el servicio CAU de Versia.</p>
     <div class="hero-actions">
@@ -348,6 +475,22 @@
       <a href="#experiencia" class="btn btn-outline">Ver experiencia</a>
       <a href="#contacto" class="btn btn-ghost">Contactar conmigo →</a>
     </div>
+   </div>
+   <div class="term" id="term">
+     <div class="term-bar" aria-hidden="true"><span></span><span></span><span></span><em>carlos@bilbao: ~</em></div>
+     <div class="term-body" id="termBody" aria-live="polite"></div>
+     <form class="term-line" id="termForm" autocomplete="off">
+       <label for="termIn">carlos@bilbao:~$</label>
+       <input id="termIn" type="text" spellcheck="false" autocapitalize="off" aria-label="Escribe un comando">
+     </form>
+     <div class="term-hints">
+       <button type="button" data-cmd="whoami">whoami</button>
+       <button type="button" data-cmd="skills">skills</button>
+       <button type="button" data-cmd="proyectos">proyectos</button>
+       <button type="button" data-cmd="contacto">contacto</button>
+       <button type="button" data-cmd="help">help</button>
+     </div>
+   </div>
   </div>
 </section>
 
@@ -357,9 +500,8 @@
     <p class="eyebrow reveal">Sobre mí</p>
     <div class="about-grid">
       <div class="reveal">
-        <p><strong>Trabajo en soporte de sistemas</strong>, resolviendo cada día las incidencias que llegan por el canal CAU en Versia: desde un problema de red hasta un fallo de aplicación, diagnosticando y escalando cuando hace falta.</p>
-        <p>Mi formación como <strong>Técnico Superior en ASIR</strong> me dio la base en Windows, Linux, redes y virtualización, y la he ido reforzando con proyectos propios: levantar servidores Ubuntu, montar laboratorios en Proxmox o administrar usuarios en Active Directory.</p>
-        <p>Me interesa seguir creciendo hacia <strong>infraestructura y sistemas en la nube</strong>. Soy una persona metódica, con capacidad de aprender rápido y de mantener la calma cuando algo se rompe.</p>
+        <p><strong>Trabajo en el CAU de Versia</strong> resolviendo incidencias de usuarios, equipos y red. Mi base es el <strong>Técnico Superior en ASIR</strong>, y la refuerzo con laboratorios y proyectos propios.</p>
+        <p>Quiero seguir creciendo hacia <strong>infraestructura y cloud</strong>.</p>
       </div>
       <div class="about-facts reveal">
         <div><span>Rol actual</span><span>Técnico de Soporte CAU</span></div>
@@ -383,7 +525,7 @@
 
       <div class="job current reveal">
         <div class="job-dot"></div>
-        <div class="job-card">
+        <div class="job-card glow">
           <div class="job-meta">
             <span class="job-date">20/07/2026 — ACTUALIDAD</span>
             <span class="job-badge">Actual</span>
@@ -391,63 +533,33 @@
           <div class="job-title">Técnico de Soporte CAU</div>
           <div class="job-org">Versia</div>
           <ul>
-            <li>Atención y soporte técnico a usuarios mediante canal CAU.</li>
-            <li>Registro, diagnóstico, resolución y seguimiento de incidencias.</li>
-            <li>Soporte de primer nivel sobre equipos, sistemas y aplicaciones.</li>
-            <li>Escalado de incidencias cuando requieren intervención de otros niveles técnicos.</li>
+            <li>Soporte de primer nivel a usuarios: equipos, sistemas y aplicaciones.</li>
+            <li>Registro, diagnóstico, resolución y escalado de incidencias.</li>
           </ul>
-          <div class="tag-row">
-            <span class="tag">CAU</span>
-            <span class="tag">Help Desk</span>
-            <span class="tag">Gestión de incidencias</span>
-          </div>
         </div>
       </div>
 
       <div class="job reveal">
         <div class="job-dot"></div>
-        <div class="job-card">
+        <div class="job-card glow">
           <div class="job-meta"><span class="job-date">2025 · BILBAO · PRÁCTICAS</span></div>
           <div class="job-title">Técnico de Soporte en Redes y Sistemas</div>
           <div class="job-org">CIFP Elorrieta Erreka Mari</div>
           <ul>
-            <li>Soporte técnico a usuarios en entornos Windows y Linux.</li>
-            <li>Resolución de incidencias relacionadas con sistemas, redes y software.</li>
-            <li>Instalación, configuración y mantenimiento de equipos informáticos.</li>
-            <li>Administración básica de Active Directory y gestión de usuarios en Windows Server.</li>
-            <li>Creación y mantenimiento de entornos virtualizados con Proxmox.</li>
-          </ul>
-          <div class="tag-row">
-            <span class="tag">Windows</span>
-            <span class="tag">Linux</span>
-            <span class="tag">Active Directory</span>
-            <span class="tag">Proxmox</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="job reveal">
-        <div class="job-dot"></div>
-        <div class="job-card">
-          <div class="job-meta"><span class="job-date">2020 — 2022</span></div>
-          <div class="job-title">Administrativo</div>
-          <div class="job-org">Punto Farma S.A.</div>
-          <ul>
-            <li>Gestión y control de stock mediante herramientas informáticas.</li>
-            <li>Gestión documental y atención al cliente.</li>
+            <li>Soporte e incidencias en entornos Windows y Linux.</li>
+            <li>Active Directory en Windows Server y virtualización con Proxmox.</li>
           </ul>
         </div>
       </div>
 
       <div class="job reveal">
         <div class="job-dot"></div>
-        <div class="job-card">
-          <div class="job-meta"><span class="job-date">2018 — 2020</span></div>
-          <div class="job-title">Auxiliar Contable</div>
-          <div class="job-org">MB Estudio Contable</div>
-          <ul>
-            <li>Registro y revisión de documentación contable.</li>
-            <li>Gestión de trámites bancarios y administrativos.</li>
+        <div class="job-card glow">
+          <div class="job-meta"><span class="job-date">2018 — 2022</span></div>
+          <div class="job-title">Administración y contabilidad</div>
+          <div class="job-org">Punto Farma S.A. · MB Estudio Contable</div>
+          <ul style="margin-bottom:0">
+            <li>Control de stock, gestión documental y atención al cliente.</li>
           </ul>
         </div>
       </div>
@@ -463,13 +575,13 @@
     <h2 class="title reveal">Estudios y formación técnica</h2>
     <p class="lede reveal">Base en sistemas en red, ampliada con formación específica en instalaciones eléctricas.</p>
     <div class="edu-grid">
-      <div class="edu-card reveal">
+      <div class="edu-card glow reveal">
         <div class="edu-mark">TS</div>
         <div class="edu-date">2022 — 2025</div>
         <div class="edu-title">Técnico Superior en Administración de Sistemas Informáticos en Red (ASIR)</div>
         <div class="edu-org">CIFP Elorrieta Erreka Mari</div>
       </div>
-      <div class="edu-card reveal">
+      <div class="edu-card glow reveal">
         <div class="edu-mark">BT</div>
         <div class="edu-date">Enero 2026 — Mayo 2026</div>
         <div class="edu-title">Montaje y Mantenimiento de Instalaciones Eléctricas de Baja Tensión</div>
@@ -484,156 +596,17 @@
   <div class="wrap">
     <p class="eyebrow reveal">Skills</p>
     <h2 class="title reveal">Stack técnico</h2>
-    <p class="lede reveal">Organizado por área, tal como aparece en mi experiencia y formación.</p>
-    <div class="skills-grid reveal">
-      <div class="skill-cat">
-        <h3>Sistemas operativos</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">Windows 10/11</span>
-          <span class="skill-chip">Windows Server 2019</span>
-          <span class="skill-chip">Linux (Ubuntu/Debian)</span>
-        </div>
+    <p class="lede reveal">Elige un área, busca una tecnología o toca una skill para ver cómo la uso.</p>
+    <div class="sx reveal">
+      <div class="sx-side">
+        <input id="skQ" class="sx-q" type="search" autocomplete="off" spellcheck="false">
+        <div class="sx-cats" id="skCats" role="group"></div>
       </div>
-      <div class="skill-cat">
-        <h3>Administración de sistemas</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">Active Directory</span>
-          <span class="skill-chip">Usuarios y grupos</span>
-          <span class="skill-chip">Unidades Organizativas (OU)</span>
-          <span class="skill-chip">GPO</span>
-          <span class="skill-chip">DNS</span>
-          <span class="skill-chip">DHCP</span>
-          <span class="skill-chip">Gestión de servicios</span>
-          <span class="skill-chip">Permisos</span>
-          <span class="skill-chip">Recursos compartidos</span>
-          <span class="skill-chip">Administración remota</span>
-          <span class="skill-chip">SSH</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Redes</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">TCP/IP</span>
-          <span class="skill-chip">IPv4/IPv6</span>
-          <span class="skill-chip">Subnetting</span>
-          <span class="skill-chip">LAN</span>
-          <span class="skill-chip">VLAN</span>
-          <span class="skill-chip">DNS</span>
-          <span class="skill-chip">DHCP</span>
-          <span class="skill-chip">NAT</span>
-          <span class="skill-chip">Routing</span>
-          <span class="skill-chip">Switching</span>
-          <span class="skill-chip">Troubleshooting de redes</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Virtualización</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">Proxmox VE (KVM)</span>
-          <span class="skill-chip">VMware</span>
-          <span class="skill-chip">Hyper-V</span>
-          <span class="skill-chip">Máquinas virtuales</span>
-          <span class="skill-chip">Redes virtuales</span>
-          <span class="skill-chip">Gestión de recursos</span>
-          <span class="skill-chip">Snapshots</span>
-          <span class="skill-chip">Clonado</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Servidores y servicios</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">Servidores Windows/Linux</span>
-          <span class="skill-chip">HTTP/HTTPS</span>
-          <span class="skill-chip">FTP/SFTP</span>
-          <span class="skill-chip">SSH</span>
-          <span class="skill-chip">Servidores web</span>
-          <span class="skill-chip">Compartición de archivos</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Bases de datos</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">SQL</span>
-          <span class="skill-chip">MySQL/MariaDB</span>
-          <span class="skill-chip">Modelo relacional</span>
-          <span class="skill-chip">Consultas SQL</span>
-          <span class="skill-chip">Usuarios y permisos</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Scripting</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">Bash</span>
-          <span class="skill-chip">Automatización de tareas</span>
-          <span class="skill-chip">Scripts de administración</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Web</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">HTML</span>
-          <span class="skill-chip">CSS</span>
-          <span class="skill-chip">XML</span>
-          <span class="skill-chip">JSON</span>
-          <span class="skill-chip">PHP</span>
-          <span class="skill-chip">WordPress</span>
-          <span class="skill-chip">Arquitectura cliente-servidor</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Seguridad</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">Control de acceso</span>
-          <span class="skill-chip">Permisos</span>
-          <span class="skill-chip">Firewalls</span>
-          <span class="skill-chip">VPN</span>
-          <span class="skill-chip">Copias de seguridad</span>
-          <span class="skill-chip">Recuperación ante fallos</span>
-          <span class="skill-chip">Hardening básico</span>
-          <span class="skill-chip">Actualizaciones y parches</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Hardware e infraestructura</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">PCs</span>
-          <span class="skill-chip">Servidores</span>
-          <span class="skill-chip">SSD/HDD</span>
-          <span class="skill-chip">RAID</span>
-          <span class="skill-chip">BIOS/UEFI</span>
-          <span class="skill-chip">Diagnóstico de hardware</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Soporte IT</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">Help Desk</span>
-          <span class="skill-chip">CAU Nivel 1</span>
-          <span class="skill-chip">Gestión de incidencias</span>
-          <span class="skill-chip">Troubleshooting</span>
-          <span class="skill-chip">Soporte a usuarios</span>
-          <span class="skill-chip">Instalación y configuración de equipos</span>
-          <span class="skill-chip">Documentación técnica</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Automatización</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">PLC Siemens LOGO!</span>
-          <span class="skill-chip">CADe_SIMU</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Electricidad</h3>
-        <div class="skill-chips">
-          <span class="skill-chip">Baja tensión</span>
-          <span class="skill-chip">Cableado de paneles</span>
-          <span class="skill-chip">Relés / Contactores</span>
-          <span class="skill-chip">Sensores</span>
-        </div>
+      <div class="sx-main">
+        <div class="sx-items" id="skItems" role="group"></div>
+        <div class="sx-insp glow" id="skInsp" aria-live="polite"></div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -642,75 +615,65 @@
   <div class="wrap">
     <p class="eyebrow reveal">Proyectos</p>
     <h2 class="title reveal">Proyectos técnicos</h2>
-    <p class="lede reveal">Trabajo práctico de la formación y proyectos propios que tengo desplegados y en uso.</p>
-    <div class="proj-grid">
-      <div class="proj-card reveal">
-        <div class="proj-icon">AD</div>
-        <div class="proj-title">Active Directory</div>
-        <div class="proj-desc">Administración de usuarios y grupos en Active Directory.</div>
-      </div>
-      <div class="proj-card reveal">
-        <div class="proj-icon">UB</div>
-        <div class="proj-title">Servidores Linux Ubuntu</div>
-        <div class="proj-desc">Instalación y configuración de servidores Linux Ubuntu.</div>
-      </div>
-      <div class="proj-card reveal">
-        <div class="proj-icon">PX</div>
-        <div class="proj-title">Laboratorios con Proxmox</div>
-        <div class="proj-desc">Creación de máquinas virtuales y laboratorios de pruebas con Proxmox.</div>
-      </div>
-      <div class="proj-card reveal">
-        <div class="proj-icon">NW</div>
-        <div class="proj-title">Redes locales</div>
-        <div class="proj-desc">Configuración básica de redes locales y servicios de red.</div>
-      </div>
-      <div class="proj-card reveal">
-        <div class="proj-icon">WP</div>
-        <div class="proj-title">WordPress + Apache</div>
-        <div class="proj-desc">Configuración de WordPress con Apache y MariaDB.</div>
-      </div>
-      <div class="proj-card reveal">
-        <div class="proj-icon">PLC</div>
-        <div class="proj-title">Automatismos industriales</div>
-        <div class="proj-desc">Diseño y simulación con CADe_SIMU y programación básica de PLC Siemens LOGO!.</div>
-      </div>
-
-      <div class="proj-card reveal">
+    <p class="lede reveal">Proyectos propios que tengo desplegados y en uso.</p>
+    <div class="filters reveal" role="group" aria-label="Filtrar proyectos">
+      <button type="button" class="on" data-f="all">Todos</button>
+      <button type="button" data-f="sys">Sistemas</button>
+      <button type="button" data-f="net">Redes</button>
+      <button type="button" data-f="cloud">Cloud</button>
+      <button type="button" data-f="auto">Automatización</button>
+    </div>
+    <div class="proj-grid collapsed">
+      <div class="proj-card glow reveal" data-cat="cloud">
         <div class="proj-icon">KA</div>
         <div class="proj-title">KAIROS · Plataforma propia en la nube</div>
         <div class="proj-desc">Aplicación web instalable (PWA) que desarrollo y mantengo. Despliegue continuo desde GitHub a Vercel, base de datos PostgreSQL en Supabase con autenticación y políticas de seguridad por fila (RLS), y notificaciones push.</div>
         <div class="tag-row"><span class="tag">Vercel</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">CI/CD</span></div>
       </div>
-      <div class="proj-card reveal">
+      <div class="proj-card glow reveal" data-cat="sys">
         <div class="proj-icon">KM</div>
         <div class="proj-title">KMAND · Herramienta interna para el CAU</div>
         <div class="proj-desc">Lanzador local que uso a diario en el CAU: agrupa las herramientas de trabajo (Jira, Odoo, monitorización) y la información de telefonía en un solo panel para atender más rápido.</div>
         <div class="tag-row"><span class="tag">PWA</span><span class="tag">Help Desk</span><span class="tag">Productividad</span></div>
       </div>
-      <div class="proj-card reveal">
+      <div class="proj-card glow reveal" data-cat="net">
         <div class="proj-icon">TV</div>
         <div class="proj-title">Streaming en directo</div>
         <div class="proj-desc">Montaje y operación de las retransmisiones semanales de una iglesia: OBS en Windows, cámaras USB, red local y un panel de control desde el móvil para cambiar escenas.</div>
         <div class="tag-row"><span class="tag">OBS</span><span class="tag">Windows</span><span class="tag">Redes</span></div>
       </div>
+      <div class="proj-card extra glow reveal" data-cat="sys">
+        <div class="proj-icon">AD</div>
+        <div class="proj-title">Active Directory</div>
+        <div class="proj-desc">Administración de usuarios y grupos en Active Directory.</div>
+      </div>
+      <div class="proj-card extra glow reveal" data-cat="sys">
+        <div class="proj-icon">UB</div>
+        <div class="proj-title">Servidores Linux Ubuntu</div>
+        <div class="proj-desc">Instalación y configuración de servidores Linux Ubuntu.</div>
+      </div>
+      <div class="proj-card extra glow reveal" data-cat="sys">
+        <div class="proj-icon">PX</div>
+        <div class="proj-title">Laboratorios con Proxmox</div>
+        <div class="proj-desc">Creación de máquinas virtuales y laboratorios de pruebas con Proxmox.</div>
+      </div>
+      <div class="proj-card extra glow reveal" data-cat="net">
+        <div class="proj-icon">NW</div>
+        <div class="proj-title">Redes locales</div>
+        <div class="proj-desc">Configuración básica de redes locales y servicios de red.</div>
+      </div>
+      <div class="proj-card extra glow reveal" data-cat="sys">
+        <div class="proj-icon">WP</div>
+        <div class="proj-title">WordPress + Apache</div>
+        <div class="proj-desc">Configuración de WordPress con Apache y MariaDB.</div>
+      </div>
+      <div class="proj-card extra glow reveal" data-cat="auto">
+        <div class="proj-icon">PLC</div>
+        <div class="proj-title">Automatismos industriales</div>
+        <div class="proj-desc">Diseño y simulación con CADe_SIMU y programación básica de PLC Siemens LOGO!.</div>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- ============== STACK ============== -->
-<section id="stack">
-  <div class="wrap">
-    <p class="eyebrow reveal" style="text-align:center; display:block;">Entorno de trabajo</p>
-    <div class="stack-row reveal">
-      <div class="stack-badge"><div class="stack-glyph">W</div>Windows</div>
-      <div class="stack-badge"><div class="stack-glyph">Lx</div>Linux</div>
-      <div class="stack-badge"><div class="stack-glyph">AD</div>Active Dir.</div>
-      <div class="stack-badge"><div class="stack-glyph">Px</div>Proxmox</div>
-      <div class="stack-badge"><div class="stack-glyph">Nw</div>Redes</div>
-      <div class="stack-badge"><div class="stack-glyph">Sh</div>SSH / Bash</div>
-      <div class="stack-badge"><div class="stack-glyph">Db</div>SQL</div>
-      <div class="stack-badge"><div class="stack-glyph">Sc</div>Seguridad</div>
-    </div>
+    <div class="more-row"><button type="button" class="btn btn-outline" id="projMore" aria-expanded="false"></button></div>
   </div>
 </section>
 
@@ -726,12 +689,14 @@
       <a href="https://github.com/Carlos-Dami" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
     </div>
     <div class="contact-meta reveal">
-      <a href="mailto:Carlos10martinez08@gmail.com">Carlos10martinez08@gmail.com</a>
+      <span><a href="mailto:Carlos10martinez08@gmail.com">Carlos10martinez08@gmail.com</a> <button type="button" class="copy-btn" id="copyMail">Copiar email</button></span>
       <a href="https://github.com/Carlos-Dami" target="_blank" rel="noopener">github.com/Carlos-Dami</a>
       <span>Bilbao, Bizkaia, España</span>
     </div>
   </div>
 </section>
+
+<div class="toast" id="toast" role="status"></div>
 
 <footer>
   <div class="wrap">© 2026 Carlos Martínez — Técnico de Sistemas · Soporte IT · Redes</div>
@@ -761,7 +726,7 @@
     "Inicio":"Home","Sobre mí":"About","Experiencia":"Experience","Formación":"Education","Proyectos":"Projects","Contacto":"Contact",
     "Descargar CV":"Download CV","Ver experiencia":"View experience","Contactar conmigo →":"Get in touch →",
     "Hola, soy Carlos.":"Hi, I'm Carlos.",
-    "Técnico de sistemas centrado<br>en soporte IT e infraestructura.":"Systems technician focused<br>on IT support and infrastructure.",
+    "Técnico de sistemas centrado en soporte IT e infraestructura.":"Systems technician focused on IT support and infrastructure.",
     "Técnico de Sistemas <span class=\"dot\">·</span> Soporte IT <span class=\"dot\">·</span> Redes":"Systems Technician <span class=\"dot\">·</span> IT Support <span class=\"dot\">·</span> Networking",
     "Técnico Superior en ASIR con experiencia en soporte IT, atención a usuarios, resolución de incidencias, sistemas Windows/Linux, redes y virtualización. Actualmente en el servicio CAU de Versia.":"Higher Technician in Networked Systems Administration (ASIR) with experience in IT support, end-user assistance, incident resolution, Windows/Linux systems, networking and virtualization. Currently on the Service Desk team at Versia.",
     "<strong>Trabajo en soporte de sistemas</strong>, resolviendo cada día las incidencias que llegan por el canal CAU en Versia: desde un problema de red hasta un fallo de aplicación, diagnosticando y escalando cuando hace falta.":"<strong>I work in systems support</strong>, resolving the incidents that reach the Service Desk at Versia every day: from a network issue to an application failure, diagnosing and escalating when needed.",
@@ -826,7 +791,19 @@
     "Montaje y operación de las retransmisiones semanales de una iglesia: OBS en Windows, cámaras USB, red local y un panel de control desde el móvil para cambiar escenas.":"Setting up and running a church's weekly live streams: OBS on Windows, USB cameras, local network and a phone-based control panel to switch scenes.",
     "Entorno de trabajo":"Everyday tools","Seguridad":"Security","Active Dir.":"Active Dir.",
     "¿Hablamos?":"Let's talk","Disponible para hablar sobre oportunidades en soporte IT, sistemas e infraestructura.":"Open to opportunities in IT support, systems and infrastructure.",
-    "Escríbeme un email":"Send me an email","Bilbao, Bizkaia, España":"Bilbao, Biscay, Spain",
+    "Escríbeme un email":"Send me an email",
+    "<strong>Trabajo en el CAU de Versia</strong> resolviendo incidencias de usuarios, equipos y red. Mi base es el <strong>Técnico Superior en ASIR</strong>, y la refuerzo con laboratorios y proyectos propios.":"<strong>I work on the Service Desk at Versia</strong>, resolving user, device and network incidents. My foundation is the <strong>ASIR higher technician degree</strong>, and I build on it with my own labs and projects.",
+    "Quiero seguir creciendo hacia <strong>infraestructura y cloud</strong>.":"I want to keep growing towards <strong>infrastructure and cloud</strong>.",
+    "Soporte de primer nivel a usuarios: equipos, sistemas y aplicaciones.":"First-level user support: devices, systems and applications.",
+    "Registro, diagnóstico, resolución y escalado de incidencias.":"Logging, diagnosing, resolving and escalating incidents.",
+    "Soporte e incidencias en entornos Windows y Linux.":"Support and incident resolution in Windows and Linux environments.",
+    "Active Directory en Windows Server y virtualización con Proxmox.":"Active Directory on Windows Server and virtualization with Proxmox.",
+    "Administración y contabilidad":"Administration and accounting",
+    "Control de stock, gestión documental y atención al cliente.":"Stock control, document management and customer service.",
+    "Elige un área, busca una tecnología o toca una skill para ver cómo la uso.":"Pick an area, search a technology or tap a skill to see how I use it.",
+    "Proyectos propios que tengo desplegados y en uso.":"My own projects, deployed and in use.",
+    "Disponible para nuevas oportunidades":"Open to new opportunities","Copiar email":"Copy email",
+    "Todos":"All","Sistemas":"Systems","Bilbao, Bizkaia, España":"Bilbao, Biscay, Spain",
     "© 2026 Carlos Martínez — Técnico de Sistemas · Soporte IT · Redes":"© 2026 Carlos Martínez — Systems Technician · IT Support · Networking"
   };
   const norm = h => h.replace(/\s+/g,' ').trim();
@@ -843,10 +820,232 @@
     document.querySelector('meta[name=description]').content = meta[l].desc;
     document.querySelectorAll('.lang-btn span').forEach(s => s.classList.toggle('on', s.dataset.l===l));
     try{ localStorage.setItem('lang', l); }catch(e){}
+    (window.__onLang||[]).forEach(f=>f(l));
   }
   let lang = new URLSearchParams(location.search).get('lang');
   if (!lang){ try{ lang = localStorage.getItem('lang'); }catch(e){} }
   setLang(lang==='en' ? 'en' : 'es');
+
+  // ===== Terminal =====
+  const T = {
+    es:{ hello:"Hola. Escribe <span class=\"acc\">help</span> o pulsa un comando de abajo.",
+      help:"Comandos: <span class=\"acc\">whoami</span> · <span class=\"acc\">experiencia</span> · <span class=\"acc\">skills</span> · <span class=\"acc\">proyectos</span> · <span class=\"acc\">contacto</span> · <span class=\"acc\">cv</span> · <span class=\"acc\">lang en</span> · <span class=\"acc\">clear</span>",
+      whoami:"Carlos Martínez · Técnico de sistemas en Bilbao.\nCAU en Versia · TS en ASIR · ES / PT B2 / EN B1\nEstado: <span class=\"ok\">● disponible</span>",
+      experiencia:"2026 — hoy   Técnico de Soporte CAU · Versia\n2025         Prácticas Redes y Sistemas · CIFP Elorrieta\n2018 — 2022  Administración y contabilidad",
+      skills:"sistemas  Windows Server · AD · GPO · Linux\nredes     TCP/IP · VLAN · DNS · DHCP · NAT\nvirtual.  Proxmox · VMware · Hyper-V\ncloud     Vercel · Supabase · GitHub\nscript    Bash · SQL",
+      proyectos:"KAIROS     plataforma propia en la nube (CI/CD, PostgreSQL, RLS)\nKMAND      herramienta interna para el CAU\nStreaming  OBS + red local + control desde el móvil\n→ <a href=\"#proyectos\">ver todos</a>",
+      contacto:"email   Carlos10martinez08@gmail.com\ngithub  <a href=\"https://github.com/Carlos-Dami\" target=\"_blank\" rel=\"noopener\">github.com/Carlos-Dami</a>",
+      cv:"Abriendo el CV en PDF…", nf:c=>"Comando no encontrado: "+c+". Prueba <span class=\"acc\">help</span>.",
+      sudo:"Buen intento. Aquí no hay permisos de root.", ph:"Escribe un comando" },
+    en:{ hello:"Hi. Type <span class=\"acc\">help</span> or tap a command below.",
+      help:"Commands: <span class=\"acc\">whoami</span> · <span class=\"acc\">experience</span> · <span class=\"acc\">skills</span> · <span class=\"acc\">projects</span> · <span class=\"acc\">contact</span> · <span class=\"acc\">cv</span> · <span class=\"acc\">lang es</span> · <span class=\"acc\">clear</span>",
+      whoami:"Carlos Martínez · Systems technician in Bilbao.\nService Desk at Versia · ASIR degree · ES / PT B2 / EN B1\nStatus: <span class=\"ok\">● available</span>",
+      experiencia:"2026 — now   Service Desk Technician · Versia\n2025         Network & Systems internship · CIFP Elorrieta\n2018 — 2022  Administration and accounting",
+      skills:"systems   Windows Server · AD · GPO · Linux\nnetwork   TCP/IP · VLAN · DNS · DHCP · NAT\nvirtual.  Proxmox · VMware · Hyper-V\ncloud     Vercel · Supabase · GitHub\nscript    Bash · SQL",
+      proyectos:"KAIROS     my own cloud platform (CI/CD, PostgreSQL, RLS)\nKMAND      internal Service Desk tool\nStreaming  OBS + local network + phone control\n→ <a href=\"#proyectos\">see all</a>",
+      contacto:"email   Carlos10martinez08@gmail.com\ngithub  <a href=\"https://github.com/Carlos-Dami\" target=\"_blank\" rel=\"noopener\">github.com/Carlos-Dami</a>",
+      cv:"Opening the CV (PDF)…", nf:c=>"Command not found: "+c+". Try <span class=\"acc\">help</span>.",
+      sudo:"Nice try. No root access here.", ph:"Type a command" }
+  };
+  const alias = { experience:'experiencia', projects:'proyectos', contact:'contacto', ayuda:'help', '?':'help', cls:'clear' };
+  const tb = document.getElementById('termBody'), tf = document.getElementById('termForm'), ti = document.getElementById('termIn');
+  const L = () => document.documentElement.lang==='en' ? 'en' : 'es';
+  const esc = t => t.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function out(html, cls){ const d=document.createElement('div'); d.className='l'+(cls?' '+cls:''); d.innerHTML=html; tb.appendChild(d); tb.scrollTop=tb.scrollHeight; }
+  function run(raw){
+    const c = raw.trim().toLowerCase(); if(!c) return;
+    out('<span class="acc">$</span> '+esc(raw.trim()),'cmd');
+    const k = alias[c] || c, t = T[L()];
+    if (k==='clear'){ tb.innerHTML=''; return; }
+    if (k==='lang en' || k==='lang es'){ setLang(k.slice(-2)); return; }
+    if (k==='cv'){ out(t.cv); window.open('CV_Carlos_Martinez.pdf','_blank'); return; }
+    if (k.startsWith('sudo')){ out(t.sudo); return; }
+    out(t[k] || t.nf(esc(c)));
+  }
+  function greet(){ tb.innerHTML=''; out(T[L()].hello); ti.placeholder=T[L()].ph; }
+  tf.addEventListener('submit', e => { e.preventDefault(); run(ti.value); ti.value=''; });
+  document.querySelectorAll('.term-hints button').forEach(b => b.addEventListener('click', () => run(b.dataset.cmd)));
+  document.getElementById('term').addEventListener('click', e => { if(e.target.tagName!=='A' && e.target.tagName!=='BUTTON') ti.focus({preventScroll:true}); });
+  (window.__onLang = window.__onLang || []).push(greet);
+  greet();
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    setTimeout(() => { let i=0; const w='whoami'; const iv=setInterval(() => { ti.value=w.slice(0,++i); if(i===w.length){ clearInterval(iv); setTimeout(()=>{ run(w); ti.value=''; },250); } }, 90); }, 900);
+  } else { run('whoami'); }
+
+  // ===== Filtros de proyectos =====
+  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach(x => x.classList.toggle('on', x===b));
+    document.querySelectorAll('.proj-card').forEach(c => c.classList.toggle('hide', b.dataset.f!=='all' && c.dataset.cat!==b.dataset.f));
+  }));
+
+  // ===== Brillo que sigue al ratón =====
+  document.querySelectorAll('.glow').forEach(el => el.addEventListener('pointermove', e => {
+    const r = el.getBoundingClientRect(); el.style.setProperty('--mx',(e.clientX-r.left)+'px'); el.style.setProperty('--my',(e.clientY-r.top)+'px');
+  }));
+
+  // ===== Copiar email =====
+  const toast = document.getElementById('toast');
+  function showToast(t){ toast.textContent=t; toast.classList.add('show'); clearTimeout(showToast.t); showToast.t=setTimeout(()=>toast.classList.remove('show'),1800); }
+  document.getElementById('copyMail').addEventListener('click', async () => {
+    const m='Carlos10martinez08@gmail.com';
+    try{ await navigator.clipboard.writeText(m); showToast(L()==='en'?'Email copied':'Email copiado'); }
+    catch(e){ showToast(m); }
+  });
+
+  // ===== Explorador de skills =====
+  const WH = { V:{es:'Versia',en:'Versia'}, P:{es:'Prácticas',en:'Internship'}, O:{es:'Proyecto propio',en:'Own project'}, F:{es:'Formación',en:'Training'} };
+  const CATS = [
+    {id:'sys',es:'Sistemas',en:'Systems'}, {id:'net',es:'Redes',en:'Networking'}, {id:'virt',es:'Virtualización',en:'Virtualization'},
+    {id:'cloud',es:'Cloud y desarrollo',en:'Cloud & dev'}, {id:'sup',es:'Soporte IT',en:'IT support'},
+    {id:'sec',es:'Seguridad',en:'Security'}, {id:'auto',es:'Automatización',en:'Automation'} ];
+  // [área, nombre ES, nombre EN o null, descripción ES, descripción EN, dónde (V Versia · P prácticas · O propio · F formación)]
+  const SKILLS = [
+    ['sys','Windows 10/11',null,'Soporte, instalación y mantenimiento de equipos de usuario.','User device support, installation and maintenance.','P'],
+    ['sys','Windows Server 2019',null,'Administración básica de dominios y usuarios.','Basic domain and user administration.','P'],
+    ['sys','Active Directory',null,'Usuarios, grupos, unidades organizativas y GPO dentro de un dominio.','Users, groups, organizational units and GPOs inside a domain.','PO'],
+    ['sys','GPO',null,'Directivas de grupo dentro de un dominio de Active Directory.','Group policies inside an Active Directory domain.',''],
+    ['sys','Linux (Ubuntu/Debian)',null,'Servidores por terminal y SSH: usuarios, permisos y servicios.','Servers over terminal and SSH: users, permissions and services.','PO'],
+    ['sys','Bash',null,'Automatización de tareas y scripts de administración.','Task automation and admin scripts.',''],
+    ['sys','SSH',null,'Administración remota de servidores.','Remote server administration.',''],
+    ['net','TCP/IP',null,'Direccionamiento IPv4/IPv6 y subnetting.','IPv4/IPv6 addressing and subnetting.',''],
+    ['net','VLAN',null,'Segmentación de redes locales.','Local network segmentation.',''],
+    ['net','DNS',null,'Resolución de nombres en redes y dominios.','Name resolution for networks and domains.',''],
+    ['net','DHCP',null,'Asignación automática de direcciones.','Automatic address assignment.',''],
+    ['net','NAT',null,'Traducción de direcciones entre redes.','Address translation between networks.',''],
+    ['net','Routing y switching','Routing & switching','Configuración y diagnóstico de redes LAN.','LAN setup and troubleshooting.',''],
+    ['net','Troubleshooting de redes','Network troubleshooting','Diagnóstico de problemas de conectividad.','Diagnosing connectivity problems.','VP'],
+    ['virt','Proxmox VE (KVM)',null,'Máquinas virtuales y laboratorios de pruebas.','Virtual machines and test labs.','PO'],
+    ['virt','VMware',null,'Conocimientos de la plataforma.','Working knowledge of the platform.',''],
+    ['virt','Hyper-V',null,'Conocimientos de la plataforma.','Working knowledge of the platform.',''],
+    ['virt','Snapshots y clonado','Snapshots & cloning','Copias instantáneas y duplicado de máquinas virtuales.','Instant copies and duplication of virtual machines.',''],
+    ['virt','Redes virtuales','Virtual networks','Redes entre las máquinas de un laboratorio.','Networks between the machines of a lab.',''],
+    ['cloud','Vercel',null,'Despliegue continuo de KAIROS desde GitHub.','Continuous deployment of KAIROS from GitHub.','O'],
+    ['cloud','Supabase',null,'Autenticación y base de datos de KAIROS.','Authentication and database for KAIROS.','O'],
+    ['cloud','PostgreSQL',null,'Base de datos con políticas de seguridad por fila (RLS).','Database with row-level security (RLS) policies.','O'],
+    ['cloud','GitHub y CI/CD','GitHub & CI/CD','Cada cambio se publica solo al hacer push.','Every change deploys automatically on push.','O'],
+    ['cloud','HTML y CSS','HTML & CSS','Webs y PWAs propias.','My own websites and PWAs.','O'],
+    ['cloud','SQL y MariaDB','SQL & MariaDB','Consultas, modelo relacional y usuarios con permisos.','Queries, relational model and users with permissions.',''],
+    ['cloud','WordPress',null,'Instalación con Apache y MariaDB.','Installation with Apache and MariaDB.',''],
+    ['sup','CAU nivel 1','Service Desk Tier 1','Atención a usuarios por el canal del CAU.','User support through the Service Desk channel.','V'],
+    ['sup','Gestión de incidencias','Incident management','Registro, diagnóstico, resolución y escalado.','Logging, diagnosis, resolution and escalation.','VP'],
+    ['sup','Jira',null,'Seguimiento de incidencias del día a día.','Day-to-day incident tracking.','V'],
+    ['sup','Odoo',null,'Herramienta de trabajo diaria en el CAU.','Daily work tool on the Service Desk.','V'],
+    ['sup','Soporte a usuarios','End-user support','Equipos, sistemas y aplicaciones.','Devices, systems and applications.','VP'],
+    ['sup','Documentación técnica','Technical documentation','Procedimientos y guías de soporte.','Support procedures and guides.',''],
+    ['sec','Control de acceso y permisos','Access control & permissions','Usuarios, grupos y permisos en recursos compartidos.','Users, groups and permissions on shared resources.',''],
+    ['sec','Firewalls',null,'Filtrado de tráfico entre redes.','Traffic filtering between networks.',''],
+    ['sec','VPN',null,'Acceso remoto seguro.','Secure remote access.',''],
+    ['sec','Copias de seguridad','Backups','Copias y recuperación ante fallos.','Backups and failure recovery.',''],
+    ['sec','Hardening básico','Basic hardening','Reducir la superficie de ataque de un servidor.','Reducing a server’s attack surface.',''],
+    ['sec','Actualizaciones y parches','Updates & patching','Mantener los sistemas al día.','Keeping systems up to date.',''],
+    ['auto','PLC Siemens LOGO!',null,'Programación básica de automatismos.','Basic automation programming.','F'],
+    ['auto','CADe_SIMU',null,'Diseño y simulación de circuitos eléctricos.','Electrical circuit design and simulation.','F'],
+    ['auto','Baja tensión','Low voltage','Montaje y mantenimiento de instalaciones.','Installation and maintenance work.','F'],
+    ['auto','Cableado de paneles','Panel wiring','Cableado de cuadros con relés y contactores.','Control panel wiring with relays and contactors.','F'],
+    ['auto','Sensores','Sensors','Sensores en circuitos de automatismos.','Sensors in automation circuits.','F']
+  ];
+  const sk = { cat:'sys', sel:'Active Directory', q:'' };
+  const byId = id => document.getElementById(id);
+  const fold = t => t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+  const skName = x => (L()==='en' && x[2]) || x[1];
+  const skDesc = x => L()==='en' ? x[4] : x[3];
+  function skList(){ const q=fold(sk.q.trim()); return q ? SKILLS.filter(x => fold(x[1]+' '+(x[2]||'')).includes(q)) : SKILLS.filter(x => x[0]===sk.cat); }
+  function mk(tag, cls, txt){ const e=document.createElement(tag); if(cls) e.className=cls; if(txt!==undefined) e.textContent=txt; return e; }
+  function skInspector(){
+    const x = SKILLS.find(y => y[1]===sk.sel), el = byId('skInsp'); el.innerHTML='';
+    if(!x){ el.hidden = true; return; } el.hidden = false;
+    const lg = L(), c = CATS.find(c => c.id===x[0]);
+    el.append(mk('span','sx-k',c[lg]), mk('h3','',skName(x)), mk('p','',skDesc(x)));
+    if(x[5]){ const w=mk('div','sx-where'); w.appendChild(mk('span','',lg==='en'?'Where I use it':'Dónde lo uso')); [...x[5]].forEach(k => w.appendChild(mk('span','tag',WH[k][lg]))); el.appendChild(w); }
+  }
+  function skSelect(name){
+    sk.sel = name;
+    byId('skItems').querySelectorAll('.sx-sk').forEach(b => { const on=b.dataset.n===name; b.classList.toggle('on',on); b.setAttribute('aria-pressed',String(on)); });
+    skInspector();
+  }
+  function skRender(){
+    const lg = L(), list = skList(), q = byId('skQ');
+    q.placeholder = lg==='en' ? 'Search (e.g. VLAN)' : 'Buscar (ej. VLAN)';
+    q.setAttribute('aria-label', q.placeholder);
+    const cats = byId('skCats'); cats.innerHTML='';
+    CATS.forEach(c => {
+      const on = !sk.q && c.id===sk.cat, b = mk('button','sx-cat'+(on?' on':'')); b.type='button'; b.setAttribute('aria-pressed',String(on));
+      b.append(mk('span','',c[lg]), mk('em','',String(SKILLS.filter(x => x[0]===c.id).length)));
+      b.addEventListener('click', () => { sk.cat=c.id; sk.q=''; q.value=''; sk.sel=SKILLS.find(x => x[0]===c.id)[1]; skRender(); });
+      cats.appendChild(b);
+    });
+    if(list.length && !list.some(x => x[1]===sk.sel)) sk.sel = list[0][1];
+    const items = byId('skItems'); items.innerHTML='';
+    if(!list.length){ items.appendChild(mk('p','sx-empty', lg==='en'?'No matches. Try another term.':'Sin resultados. Prueba con otro término.')); }
+    list.forEach((x,i) => {
+      const b = mk('button','sx-sk',skName(x)); b.type='button'; b.dataset.n=x[1]; b.style.setProperty('--i',i);
+      b.addEventListener('click', () => skSelect(x[1])); items.appendChild(b);
+    });
+    skSelect(list.length ? sk.sel : '');
+  }
+  byId('skQ').addEventListener('input', e => { sk.q = e.target.value; skRender(); });
+  byId('skQ').addEventListener('keydown', e => { if(e.key==='Escape'){ e.target.value=''; sk.q=''; skRender(); } });
+  (window.__onLang = window.__onLang || []).push(skRender);
+  skRender();
+
+  // ===== Fondo interactivo: LEDs de switch =====
+  (() => {
+    const cv = document.getElementById('bgfx'), ctx = cv.getContext('2d');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const GAP = 28, WINE = '167,46,63';
+    let W = 0, H = 0, mouse = null, P = { x: 0, y: 0 }, blink = null, cols = 0, rows = 0;
+
+    function setup(){
+      cols = Math.ceil(W / GAP) + 1; rows = Math.ceil(H / GAP) + 1; blink = new Float32Array(cols * rows);
+    }
+    function resize(){
+      const dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      setup(); if (!P.x) { P.x = W * .7; P.y = H * .35; } if (reduce) draw();
+    }
+    // Sin ratón (móvil o fuera de la ventana): un punto que se mueve despacio
+    function target(t){ return mouse || { x: W * (0.5 + 0.32 * Math.sin(t * 0.00023)), y: H * (0.45 + 0.28 * Math.sin(t * 0.00031 + 1)) }; }
+
+
+    function drawLeds(){
+      const R = 190;
+      ctx.fillStyle = 'rgba(255,255,255,0.09)';
+      for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) ctx.fillRect(i * GAP + GAP / 2 - .75, j * GAP + GAP / 2 - .75, 1.5, 1.5);
+      if (!reduce) for (let k = 0; k < 3; k++) if (Math.random() < .45) blink[(Math.random() * blink.length) | 0] = 1;
+      for (let idx = 0; idx < blink.length; idx++){
+        const b = blink[idx]; if (b < .02) continue;
+        ctx.fillStyle = `rgba(63,185,122,${.55 * b})`; ctx.beginPath();
+        ctx.arc((idx % cols) * GAP + GAP / 2, ((idx / cols) | 0) * GAP + GAP / 2, 1.6, 0, 6.283); ctx.fill(); blink[idx] = b * .93;
+      }
+      const i0 = Math.max(0, Math.floor((P.x - R) / GAP)), i1 = Math.min(cols - 1, Math.ceil((P.x + R) / GAP));
+      const j0 = Math.max(0, Math.floor((P.y - R) / GAP)), j1 = Math.min(rows - 1, Math.ceil((P.y + R) / GAP));
+      for (let i = i0; i <= i1; i++) for (let j = j0; j <= j1; j++){
+        const x = i * GAP + GAP / 2, y = j * GAP + GAP / 2, d = Math.hypot(x - P.x, y - P.y); if (d >= R) continue;
+        const e = (1 - d / R) ** 2; ctx.fillStyle = `rgba(${WINE},${.25 + .7 * e})`;
+        ctx.beginPath(); ctx.arc(x, y, .9 + 2.6 * e, 0, 6.283); ctx.fill();
+      }
+    }
+    function draw(){ ctx.clearRect(0, 0, W, H); drawLeds(); }
+    function frame(t){ const tg = target(t); P.x += (tg.x - P.x) * .12; P.y += (tg.y - P.y) * .12; draw(); requestAnimationFrame(frame); }
+
+    if (hover){
+      addEventListener('pointermove', e => { mouse = { x: e.clientX, y: e.clientY }; }, { passive: true });
+      document.documentElement.addEventListener('mouseleave', () => { mouse = null; });
+    }
+    addEventListener('resize', resize); resize();
+    if (!reduce) requestAnimationFrame(frame);
+  })();
+
+  // ===== Ver más =====
+  const LBL = { s:{ es:['Ver stack completo','Ocultar stack completo'], en:['See full stack','Hide full stack'] },
+                p:{ es:['Ver más proyectos','Ver menos proyectos'], en:['More projects','Fewer projects'] } };
+  const pBtn = document.getElementById('projMore'), pGrid = document.querySelector('.proj-grid');
+  function moreLabels(){ pBtn.textContent = LBL.p[L()][pGrid.classList.contains('collapsed')?0:1]; }
+  pBtn.addEventListener('click', () => { const c = pGrid.classList.toggle('collapsed'); pBtn.setAttribute('aria-expanded', String(!c)); moreLabels(); });
+  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => { const f = b.dataset.f!=='all'; pGrid.classList.toggle('filtered', f); pBtn.hidden = f; }));
+  (window.__onLang = window.__onLang || []).push(moreLabels); moreLabels();
+
   document.querySelector('.lang-btn').addEventListener('click', () => setLang(document.documentElement.lang==='en' ? 'es' : 'en'));
 </script>
 
