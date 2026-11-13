@@ -101,6 +101,11 @@
     padding:9px 18px; border-radius:6px; transition:background .25s ease, transform .2s ease;
   }
   .nav-cta:hover{ background:var(--wine-bright); transform:translateY(-1px); }
+  .nav-right{ display:flex; align-items:center; gap:14px; margin-left:auto; margin-right:4px; }
+  .lang-btn{ background:none; border:1px solid var(--border-strong); color:var(--text-faint); font:600 12px 'Inter',sans-serif; letter-spacing:.06em; padding:6px 10px; border-radius:6px; cursor:pointer; }
+  .lang-btn:hover{ border-color:var(--wine-bright); }
+  .lang-btn span.on{ color:var(--text); }
+  @media (min-width:861px){ .nav-right{ margin-left:0; } }
   .burger{
     display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;
   }
@@ -234,16 +239,6 @@
   .skill-cat{ background:var(--bg-2); padding:26px 24px; }
   .skill-cat h3{ font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--wine-bright); margin-bottom:16px; }
 
-  .env-heading{ margin-top:72px; margin-bottom:28px; }
-  .env-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  @media (max-width:720px){ .env-grid{ grid-template-columns:1fr; } }
-  .env-card{
-    background:var(--bg-2); border:1px solid var(--border); border-radius:12px;
-    padding:24px 26px; transition:border-color .25s ease, transform .25s ease;
-  }
-  .env-card:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
-  .env-title{ font-size:15px; font-weight:700; margin-bottom:8px; }
-  .env-desc{ font-size:13.5px; color:var(--text-dim); }
   .skill-chips{ display:flex; flex-wrap:wrap; gap:8px; }
   .skill-chip{
     font-size:12.5px; color:var(--text); background:var(--bg-3);
@@ -265,6 +260,7 @@
   }
   .proj-title{ font-size:15.5px; font-weight:700; }
   .proj-desc{ font-size:13.5px; color:var(--text-dim); flex:1; }
+  .proj-card .tag-row{ margin-top:6px; }
   .proj-card.empty{
     border-style:dashed; border-color:var(--border-strong); background:transparent;
     align-items:flex-start; justify-content:center; min-height:150px;
@@ -318,7 +314,10 @@
       <a href="#proyectos">Proyectos</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a href="CV_Carlos_Martinez.pdf" download class="nav-cta desktop-only">Descargar CV</a>
+    <div class="nav-right">
+      <button class="lang-btn" type="button" aria-label="Cambiar idioma"><span data-l="es">ES</span> / <span data-l="en">EN</span></button>
+      <a href="CV_Carlos_Martinez.pdf" download class="nav-cta desktop-only">Descargar CV</a>
+    </div>
     <button class="burger" id="burgerBtn" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
@@ -635,42 +634,6 @@
       </div>
     </div>
 
-    <h3 class="title reveal env-heading" style="font-size:22px;">Entornos de trabajo</h3>
-    <p class="lede reveal">Cómo aplico este stack en la práctica.</p>
-    <div class="env-grid">
-      <div class="env-card reveal">
-        <div class="env-title">Entornos corporativos Windows</div>
-        <div class="env-desc">Administración de Active Directory, dominios, usuarios, grupos, GPO, DNS, DHCP y recursos compartidos.</div>
-      </div>
-      <div class="env-card reveal">
-        <div class="env-title">Entornos Linux</div>
-        <div class="env-desc">Administración básica de servidores Ubuntu/Debian mediante terminal y SSH, gestión de usuarios, permisos, servicios y automatización con Bash.</div>
-      </div>
-      <div class="env-card reveal">
-        <div class="env-title">Infraestructuras virtualizadas</div>
-        <div class="env-desc">Despliegue y administración de máquinas virtuales mediante Proxmox VE/KVM, con conocimientos de VMware y Hyper-V.</div>
-      </div>
-      <div class="env-card reveal">
-        <div class="env-title">Infraestructuras de red</div>
-        <div class="env-desc">Configuración y diagnóstico de redes LAN, VLAN y TCP/IP, incluyendo direccionamiento IP, DNS, DHCP, routing y switching.</div>
-      </div>
-      <div class="env-card reveal">
-        <div class="env-title">Entornos de soporte IT</div>
-        <div class="env-desc">Atención a usuarios, gestión y seguimiento de incidencias, diagnóstico de problemas y resolución de incidencias de primer nivel.</div>
-      </div>
-      <div class="env-card reveal">
-        <div class="env-title">Entornos de servidores</div>
-        <div class="env-desc">Instalación, configuración, mantenimiento y administración de servidores Windows/Linux y servicios de infraestructura.</div>
-      </div>
-      <div class="env-card reveal">
-        <div class="env-title">Entornos web y bases de datos</div>
-        <div class="env-desc">Trabajo con servidores web, aplicaciones cliente-servidor, PHP, SQL y sistemas gestores de bases de datos.</div>
-      </div>
-      <div class="env-card reveal">
-        <div class="env-title">Entornos de laboratorio</div>
-        <div class="env-desc">Diseño, despliegue y configuración de infraestructuras IT virtualizadas para prácticas, pruebas y simulación de escenarios empresariales.</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -679,7 +642,7 @@
   <div class="wrap">
     <p class="eyebrow reveal">Proyectos</p>
     <h2 class="title reveal">Proyectos técnicos</h2>
-    <p class="lede reveal">Trabajo práctico realizado durante la formación y el día a día. Iré añadiendo proyectos personales próximamente.</p>
+    <p class="lede reveal">Trabajo práctico de la formación y proyectos propios que tengo desplegados y en uso.</p>
     <div class="proj-grid">
       <div class="proj-card reveal">
         <div class="proj-icon">AD</div>
@@ -712,20 +675,23 @@
         <div class="proj-desc">Diseño y simulación con CADe_SIMU y programación básica de PLC Siemens LOGO!.</div>
       </div>
 
-      <div class="proj-card empty reveal">
-        <span class="proj-soon">Próximamente</span>
-        <div class="proj-title">Desarrollo web</div>
-        <div class="proj-desc">Espacio reservado para un proyecto de desarrollo web personal.</div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">KA</div>
+        <div class="proj-title">KAIROS · Plataforma propia en la nube</div>
+        <div class="proj-desc">Aplicación web instalable (PWA) que desarrollo y mantengo. Despliegue continuo desde GitHub a Vercel, base de datos PostgreSQL en Supabase con autenticación y políticas de seguridad por fila (RLS), y notificaciones push.</div>
+        <div class="tag-row"><span class="tag">Vercel</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">CI/CD</span></div>
       </div>
-      <div class="proj-card empty reveal">
-        <span class="proj-soon">Próximamente</span>
-        <div class="proj-title">Infraestructura & Cloud</div>
-        <div class="proj-desc">Espacio reservado para un proyecto de infraestructura o cloud.</div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">KM</div>
+        <div class="proj-title">KMAND · Herramienta interna para el CAU</div>
+        <div class="proj-desc">Lanzador local que uso a diario en el CAU: agrupa las herramientas de trabajo (Jira, Odoo, monitorización) y la información de telefonía en un solo panel para atender más rápido.</div>
+        <div class="tag-row"><span class="tag">PWA</span><span class="tag">Help Desk</span><span class="tag">Productividad</span></div>
       </div>
-      <div class="proj-card empty reveal">
-        <span class="proj-soon">Próximamente</span>
-        <div class="proj-title">Automatización</div>
-        <div class="proj-desc">Espacio reservado para un proyecto personal de automatización.</div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">TV</div>
+        <div class="proj-title">Streaming en directo</div>
+        <div class="proj-desc">Montaje y operación de las retransmisiones semanales de una iglesia: OBS en Windows, cámaras USB, red local y un panel de control desde el móvil para cambiar escenas.</div>
+        <div class="tag-row"><span class="tag">OBS</span><span class="tag">Windows</span><span class="tag">Redes</span></div>
       </div>
     </div>
   </div>
@@ -757,9 +723,11 @@
     <div class="contact-actions reveal">
       <a href="mailto:Carlos10martinez08@gmail.com" class="btn btn-primary">Escríbeme un email</a>
       <a href="CV_Carlos_Martinez.pdf" download class="btn btn-outline">Descargar CV</a>
+      <a href="https://github.com/Carlos-Dami" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
     </div>
     <div class="contact-meta reveal">
       <a href="mailto:Carlos10martinez08@gmail.com">Carlos10martinez08@gmail.com</a>
+      <a href="https://github.com/Carlos-Dami" target="_blank" rel="noopener">github.com/Carlos-Dami</a>
       <span>Bilbao, Bizkaia, España</span>
     </div>
   </div>
@@ -787,6 +755,99 @@
     entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold:0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ===== Idioma ES / EN =====
+  const EN = {
+    "Inicio":"Home","Sobre mí":"About","Experiencia":"Experience","Formación":"Education","Proyectos":"Projects","Contacto":"Contact",
+    "Descargar CV":"Download CV","Ver experiencia":"View experience","Contactar conmigo →":"Get in touch →",
+    "Hola, soy Carlos.":"Hi, I'm Carlos.",
+    "Técnico de sistemas centrado<br>en soporte IT e infraestructura.":"Systems technician focused<br>on IT support and infrastructure.",
+    "Técnico de Sistemas <span class=\"dot\">·</span> Soporte IT <span class=\"dot\">·</span> Redes":"Systems Technician <span class=\"dot\">·</span> IT Support <span class=\"dot\">·</span> Networking",
+    "Técnico Superior en ASIR con experiencia en soporte IT, atención a usuarios, resolución de incidencias, sistemas Windows/Linux, redes y virtualización. Actualmente en el servicio CAU de Versia.":"Higher Technician in Networked Systems Administration (ASIR) with experience in IT support, end-user assistance, incident resolution, Windows/Linux systems, networking and virtualization. Currently on the Service Desk team at Versia.",
+    "<strong>Trabajo en soporte de sistemas</strong>, resolviendo cada día las incidencias que llegan por el canal CAU en Versia: desde un problema de red hasta un fallo de aplicación, diagnosticando y escalando cuando hace falta.":"<strong>I work in systems support</strong>, resolving the incidents that reach the Service Desk at Versia every day: from a network issue to an application failure, diagnosing and escalating when needed.",
+    "Mi formación como <strong>Técnico Superior en ASIR</strong> me dio la base en Windows, Linux, redes y virtualización, y la he ido reforzando con proyectos propios: levantar servidores Ubuntu, montar laboratorios en Proxmox o administrar usuarios en Active Directory.":"My <strong>ASIR degree</strong> gave me a solid base in Windows, Linux, networking and virtualization, which I keep building on with my own projects: setting up Ubuntu servers, running Proxmox labs and managing users in Active Directory.",
+    "Me interesa seguir creciendo hacia <strong>infraestructura y sistemas en la nube</strong>. Soy una persona metódica, con capacidad de aprender rápido y de mantener la calma cuando algo se rompe.":"I want to keep growing towards <strong>infrastructure and cloud systems</strong>. I'm methodical, I learn fast and I stay calm when something breaks.",
+    "Rol actual":"Current role","Técnico de Soporte CAU":"Service Desk Technician","Empresa":"Company","Técnico Superior ASIR":"Higher Technician, ASIR","Ubicación":"Location","Idiomas":"Languages",
+    "ES nativo · PT B2 · EN B1":"ES native · PT B2 · EN B1",
+    "Recorrido profesional":"Career path",
+    "De la administración y la contabilidad al soporte de sistemas, con una progresión clara hacia IT.":"From administration and accounting to systems support, with a clear move into IT.",
+    "20/07/2026 — ACTUALIDAD":"20/07/2026 — PRESENT","Actual":"Current",
+    "Atención y soporte técnico a usuarios mediante canal CAU.":"Technical support to users through the Service Desk.",
+    "Registro, diagnóstico, resolución y seguimiento de incidencias.":"Logging, diagnosis, resolution and follow-up of incidents.",
+    "Soporte de primer nivel sobre equipos, sistemas y aplicaciones.":"First-level support for devices, systems and applications.",
+    "Escalado de incidencias cuando requieren intervención de otros niveles técnicos.":"Escalation of incidents that require other support tiers.",
+    "Gestión de incidencias":"Incident management",
+    "2025 · BILBAO · PRÁCTICAS":"2025 · BILBAO · INTERNSHIP",
+    "Técnico de Soporte en Redes y Sistemas":"Network and Systems Support Technician",
+    "Soporte técnico a usuarios en entornos Windows y Linux.":"User support in Windows and Linux environments.",
+    "Resolución de incidencias relacionadas con sistemas, redes y software.":"Resolution of systems, network and software incidents.",
+    "Instalación, configuración y mantenimiento de equipos informáticos.":"Installation, configuration and maintenance of computers.",
+    "Administración básica de Active Directory y gestión de usuarios en Windows Server.":"Basic Active Directory administration and user management on Windows Server.",
+    "Creación y mantenimiento de entornos virtualizados con Proxmox.":"Building and maintaining virtualized environments with Proxmox.",
+    "Administrativo":"Administrative Assistant",
+    "Gestión y control de stock mediante herramientas informáticas.":"Stock management and control using IT tools.",
+    "Gestión documental y atención al cliente.":"Document management and customer service.",
+    "Auxiliar Contable":"Accounting Assistant",
+    "Registro y revisión de documentación contable.":"Recording and reviewing accounting documents.",
+    "Gestión de trámites bancarios y administrativos.":"Handling banking and administrative procedures.",
+    "Estudios y formación técnica":"Education and technical training",
+    "Base en sistemas en red, ampliada con formación específica en instalaciones eléctricas.":"A networked-systems foundation, extended with training in electrical installations.",
+    "Técnico Superior en Administración de Sistemas Informáticos en Red (ASIR)":"Higher Technician in Networked Computer Systems Administration (ASIR)",
+    "Enero 2026 — Mayo 2026":"January 2026 — May 2026",
+    "Montaje y Mantenimiento de Instalaciones Eléctricas de Baja Tensión":"Installation and Maintenance of Low-Voltage Electrical Systems",
+    "Formación complementaria":"Complementary training",
+    "Stack técnico":"Technical stack","Organizado por área, tal como aparece en mi experiencia y formación.":"Grouped by area, as it shows up in my experience and training.",
+    "Sistemas operativos":"Operating systems","Administración de sistemas":"Systems administration","Redes":"Networking","Virtualización":"Virtualization",
+    "Servidores y servicios":"Servers and services","Bases de datos":"Databases","Seguridad":"Security","Hardware e infraestructura":"Hardware and infrastructure",
+    "Soporte IT":"IT support","Automatización":"Automation","Electricidad":"Electrical",
+    "Usuarios y grupos":"Users and groups","Unidades Organizativas (OU)":"Organizational Units (OU)","Gestión de servicios":"Service management","Permisos":"Permissions",
+    "Recursos compartidos":"Shared resources","Administración remota":"Remote administration","Troubleshooting de redes":"Network troubleshooting",
+    "Máquinas virtuales":"Virtual machines","Redes virtuales":"Virtual networks","Gestión de recursos":"Resource management","Clonado":"Cloning",
+    "Servidores Windows/Linux":"Windows/Linux servers","Servidores web":"Web servers","Compartición de archivos":"File sharing",
+    "Modelo relacional":"Relational model","Consultas SQL":"SQL queries","Usuarios y permisos":"Users and permissions",
+    "Automatización de tareas":"Task automation","Scripts de administración":"Admin scripts","Arquitectura cliente-servidor":"Client-server architecture",
+    "Control de acceso":"Access control","Copias de seguridad":"Backups","Recuperación ante fallos":"Disaster recovery","Hardening básico":"Basic hardening",
+    "Actualizaciones y parches":"Updates and patching","Servidores":"Servers","Diagnóstico de hardware":"Hardware diagnostics",
+    "CAU Nivel 1":"Service Desk Tier 1","Soporte a usuarios":"End-user support","Instalación y configuración de equipos":"Device setup and configuration",
+    "Documentación técnica":"Technical documentation","Baja tensión":"Low voltage","Cableado de paneles":"Panel wiring","Relés / Contactores":"Relays / Contactors","Sensores":"Sensors",
+    "Proyectos técnicos":"Technical projects",
+    "Trabajo práctico de la formación y proyectos propios que tengo desplegados y en uso.":"Hands-on work from my training, plus my own projects that are deployed and in use.",
+    "Administración de usuarios y grupos en Active Directory.":"User and group administration in Active Directory.",
+    "Servidores Linux Ubuntu":"Ubuntu Linux servers","Instalación y configuración de servidores Linux Ubuntu.":"Installing and configuring Ubuntu Linux servers.",
+    "Laboratorios con Proxmox":"Proxmox labs","Creación de máquinas virtuales y laboratorios de pruebas con Proxmox.":"Building virtual machines and test labs with Proxmox.",
+    "Redes locales":"Local networks","Configuración básica de redes locales y servicios de red.":"Basic setup of local networks and network services.",
+    "Configuración de WordPress con Apache y MariaDB.":"WordPress setup with Apache and MariaDB.",
+    "Automatismos industriales":"Industrial automation","Diseño y simulación con CADe_SIMU y programación básica de PLC Siemens LOGO!.":"Design and simulation with CADe_SIMU and basic Siemens LOGO! PLC programming.",
+    "KAIROS · Plataforma propia en la nube":"KAIROS · My own cloud platform",
+    "Aplicación web instalable (PWA) que desarrollo y mantengo. Despliegue continuo desde GitHub a Vercel, base de datos PostgreSQL en Supabase con autenticación y políticas de seguridad por fila (RLS), y notificaciones push.":"An installable web app (PWA) I build and maintain. Continuous deployment from GitHub to Vercel, a PostgreSQL database on Supabase with authentication and row-level security (RLS) policies, and push notifications.",
+    "KMAND · Herramienta interna para el CAU":"KMAND · Internal Service Desk tool",
+    "Lanzador local que uso a diario en el CAU: agrupa las herramientas de trabajo (Jira, Odoo, monitorización) y la información de telefonía en un solo panel para atender más rápido.":"A local launcher I use every day on the Service Desk: it brings work tools (Jira, Odoo, monitoring) and phone information into one panel so I can respond faster.",
+    "Productividad":"Productivity","Streaming en directo":"Live streaming",
+    "Montaje y operación de las retransmisiones semanales de una iglesia: OBS en Windows, cámaras USB, red local y un panel de control desde el móvil para cambiar escenas.":"Setting up and running a church's weekly live streams: OBS on Windows, USB cameras, local network and a phone-based control panel to switch scenes.",
+    "Entorno de trabajo":"Everyday tools","Seguridad":"Security","Active Dir.":"Active Dir.",
+    "¿Hablamos?":"Let's talk","Disponible para hablar sobre oportunidades en soporte IT, sistemas e infraestructura.":"Open to opportunities in IT support, systems and infrastructure.",
+    "Escríbeme un email":"Send me an email","Bilbao, Bizkaia, España":"Bilbao, Biscay, Spain",
+    "© 2026 Carlos Martínez — Técnico de Sistemas · Soporte IT · Redes":"© 2026 Carlos Martínez — Systems Technician · IT Support · Networking"
+  };
+  const norm = h => h.replace(/\s+/g,' ').trim();
+  const INLINE = new Set(['STRONG','BR','SPAN']);
+  const nodes = [...document.querySelectorAll('body *:not(script):not(style)')].filter(el =>
+    el.children.length===0 || [...el.children].every(c => INLINE.has(c.tagName) && c.children.length===0));
+  nodes.forEach(el => { const k = norm(el.innerHTML); if (EN[k]) { el.dataset.es = el.innerHTML; el.dataset.en = EN[k]; } });
+  const meta = { es:{ title:document.title, desc:document.querySelector('meta[name=description]').content },
+    en:{ title:'Carlos Martínez — Systems Technician · IT Support · Networking',
+         desc:'Carlos Martínez, systems technician specialising in IT support, Service Desk, networking and infrastructure.' } };
+  function setLang(l){
+    document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = l==='en' ? el.dataset.en : el.dataset.es; });
+    document.documentElement.lang = l; document.title = meta[l].title;
+    document.querySelector('meta[name=description]').content = meta[l].desc;
+    document.querySelectorAll('.lang-btn span').forEach(s => s.classList.toggle('on', s.dataset.l===l));
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  let lang = new URLSearchParams(location.search).get('lang');
+  if (!lang){ try{ lang = localStorage.getItem('lang'); }catch(e){} }
+  setLang(lang==='en' ? 'en' : 'es');
+  document.querySelector('.lang-btn').addEventListener('click', () => setLang(document.documentElement.lang==='en' ? 'es' : 'en'));
 </script>
 
 </body>
